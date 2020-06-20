@@ -1,10 +1,12 @@
 <template>
   <button
-    class="button"
     @click="click"
     :disabled="disabled"
     tabindex="-1"
-    :class="{ 'button--secondary': secondary, 'button--loading': loading }"
+    :class="[
+      { 'button--secondary': secondary, 'button--loading': loading },
+      $style.button,
+    ]"
   >
     <icon
       v-if="!loading && icon"
@@ -33,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import '../styles/mixins.scss';
 @import '../styles/_variables.scss';
 @import '../styles/colors.scss';
