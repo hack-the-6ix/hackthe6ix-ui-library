@@ -1,16 +1,31 @@
 {
-  "name": "ui-library",
-  "version": "1.0.0",
+  "name": "@hackthe6ix/vue-ui",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "sideEffects": false,
+  "files": [
+    "dist/*"
+  ],
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/hack-the-6ix/ui-library.git"
+  },
+  "author": "Hack The 6ix",
+  "bugs": {
+      "url": "https://github.com/hack-the-6ix/ui-library/issues"
+  },
+  "homepage": "https://hack-the-6ix.github.io/ui-library",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "prettier --write \"**/*.{js,jsx,vue,json,mdx}\"",
     "start": "start-storybook -p 8001 -s static",
+    "prepublish": "npm run lint && npm run build",
+    "build": "npm run build:clean && npm run build:package",
+    "build:clean": "rm -rf ./dist ./app && mkdir ./dist",
+    "build:package": "cp -a ./src/. ./dist && rm -rf ./dist/**/*.stories.mdx",
     "build:storybook": "build-storybook -s static -o app"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "peerDependencies": {
     "vue": "*"
@@ -30,12 +45,10 @@
     "pretty-quick": "^2.0.1",
     "react": "^16.13.1",
     "react-is": "^16.13.1",
+    "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
     "vue": "^2.6.11",
     "vue-loader": "^15.9.2"
-  },
-  "dependencies": {
-    "sass": "^1.26.8"
   }
 }
