@@ -1,0 +1,55 @@
+$_: (
+  'Avenir': (
+    fallback: sans-serif,
+    sources: (
+      (
+        style: normal,
+        weight: 400,
+        src: (
+          opentype: 'AvenirLTStd-Roman.otf',
+        ),
+      ),
+      (
+        style: normal,
+        weight: 600,
+        src: (
+          opentype: 'AvenirLTStd-Black.otf',
+        ),
+      ),
+      (
+        style: normal,
+        weight: 200,
+        src: (
+          opentype: 'AvenirLTStd-Book.otf',
+        ),
+      ),
+    ),
+  ),
+);
+
+@function _load($sources, $path) {
+  $res: '';
+  @each $type, $url in map-get($sources, src) {
+    $res: #{$res} #{if($res == '', '', ',')} url('#{$path}#{$url}') format('#{$type}');
+  }
+  @return $res;
+}
+
+@mixin load ($path: '/') {
+  @each $tag, $config in $_ {
+    @each $source in map-get($config, sources) {
+      @font-face {
+        font-weight: map-get($source, weight);
+        font-style: map-get($source, style);
+        src: _load($source, $path);
+        font-family: '#{$tag}';
+        font-display: swap;
+      }
+    }
+  }
+}
+
+@function font-family($name) {
+  $config: map-get($_, $name);
+  @return "#{$name}", map-get($config, fallback);
+}

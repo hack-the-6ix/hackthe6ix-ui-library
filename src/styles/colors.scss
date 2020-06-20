@@ -1,0 +1,55 @@
+@use './mixins';
+
+$teal: #23B5AF;
+$aqua: #A9DED9;
+$pink: #EC9D89;
+$yellow: #EDBA4B;
+$navy: #0E1355;
+$light_blue: #88D2EE;
+$sand: #FAE0A1;
+$magenta: #8B3763;
+$error: #F14646;
+$success: #18B918;
+
+$_: (
+  teal: $teal,
+  aqua: $aqua,
+  pink: $pink,
+  yellow: $yellow,
+  navy: $navy,
+  light: $light_blue,
+  sand: $sand,
+  magenta: $magenta,
+  error: $error,
+  sucess: $success,
+);
+
+// Creates states for colors
+@function _color_generator($tag, $color) {
+  @return (
+    #{$tag}: $color,
+    #{$tag}-hover: darken($color, 10%),
+    #{$tag}-active: darken($color, 20%),
+  );
+}
+
+$__: ();
+@each $tag, $val in $_ {
+  $__: map-merge($__, _color_generator($tag, $val));
+}
+
+// Create css variables
+@mixin load {
+  :root {
+    @each $tag, $val in mixins.to-css-var($__) {
+      #{$tag}: #{$val};
+    }
+  }
+}
+
+// Expose variables for usage in code
+:export {
+  @each $tag, $val in mixins.to-css-var($__) {
+    #{$tag}: #{$val};
+  }
+}

@@ -1,0 +1,7 @@
+@use '../src/styles/colors';
+@use '../src/styles/fonts';
+@use '../src/styles/units';
+
+@include colors.load;
+@include fonts.load('../static/');
+@include units.load;

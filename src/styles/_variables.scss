@@ -1,0 +1,21 @@
+$speed: (
+  fast: 150ms,
+  normal: 200ms,
+  slow: 300ms,
+  page: 500ms,
+);
+
+$media: (
+  phone: 550px,
+  tablet: 768px,
+  laptop: 1024px,
+  desktop: 1440px,
+);
+
+$ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+
+:export {
+  @each $tag, $val in map-merge($speed, $media) {
+    #{$tag}: #{$val};
+  }
+}
