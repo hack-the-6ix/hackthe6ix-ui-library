@@ -16,10 +16,11 @@
   },
   "homepage": "https://hack-the-6ix.github.io/ui-library",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "prettier --write \"**/*.{js,jsx,vue,json,mdx}\"",
+    "test": "npm run prettier -- --check",
+    "lint": "npm run prettier -- --write",
     "start": "start-storybook -p 8001 -s static",
     "prepublish": "npm run lint && npm run build",
+    "prettier": "prettier \"**/*.{js,jsx,vue,json,mdx}\"",
     "build": "npm run build:clean && npm run build:package",
     "build:clean": "rm -rf ./dist ./app && mkdir ./dist",
     "build:package": "cp -a ./src/. ./dist && rm -rf ./dist/**/*.stories.mdx",

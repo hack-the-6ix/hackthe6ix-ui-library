@@ -6,21 +6,30 @@ $_: (
         style: normal,
         weight: 400,
         src: (
-          opentype: 'AvenirLTStd-Roman.otf',
+          embedded-opentype: 'avenir-next-regular.eot',
+          truetype: 'avenir-next-regular.ttf',
+          woff: 'avenir-next-regular.woff',
+          svg: 'avenir-next-regular.svg',
         ),
       ),
       (
         style: normal,
         weight: 600,
         src: (
-          opentype: 'AvenirLTStd-Black.otf',
+          embedded-opentype: 'avenir-next-medium.eot',
+          truetype: 'avenir-next-medium.ttf',
+          woff: 'avenir-next-medium.woff',
+          svg: 'avenir-next-medium.svg',
         ),
       ),
       (
         style: normal,
         weight: 200,
         src: (
-          opentype: 'AvenirLTStd-Book.otf',
+          embedded-opentype: 'avenir-next-bold.eot',
+          truetype: 'avenir-next-bold.ttf',
+          woff: 'avenir-next-bold.woff',
+          svg: 'avenir-next-bold.svg',
         ),
       ),
     ),
