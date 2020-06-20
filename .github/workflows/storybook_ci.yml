@@ -5,6 +5,11 @@ name: Storybook CI
 on:
   push:
     branches: [ master ]
+    paths:
+      - '.storybook/**'
+      - 'helpers/**'
+      - 'static/**'
+      - 'src/**'
 
 jobs:
   build:
