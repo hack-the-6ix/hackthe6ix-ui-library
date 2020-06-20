@@ -4,6 +4,7 @@
   "description": "",
   "sideEffects": false,
   "files": [
+    "static/*",
     "dist/*"
   ],
   "repository": {
