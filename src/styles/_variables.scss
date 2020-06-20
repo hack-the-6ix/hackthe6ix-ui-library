@@ -1,3 +1,12 @@
+@import '../styles/fonts.scss';
+
+$font: font-family(Avenir);
+
+$state: (
+  error: #f14646,
+  success: #18b918,
+);
+
 $speed: (
   fast: 150ms,
   normal: 200ms,
@@ -12,7 +21,7 @@ $media: (
   desktop: 1440px,
 );
 
-$ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 :export {
   @each $tag, $val in map-merge($speed, $media) {

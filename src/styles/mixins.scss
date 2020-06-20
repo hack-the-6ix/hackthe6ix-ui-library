@@ -17,3 +17,25 @@
   }
   @return $res;
 }
+
+// Add tranisitions to attributes because im lazy
+@mixin transition($attrs: null, $speed: NORMAL, $ease: NORMAL, $delay: 0ms) {
+  $res: '';
+
+  // Multiple attributes
+  @if type-of($attrs) == list {
+    @each $attr in $attrs {
+      $res: #{$res}, makeTransition($attr, $speed, $ease, $delay);
+    }
+
+    // Single/no attribute
+  } @else {
+    $res: makeTransition($attrs, $speed, $ease, $delay);
+  }
+
+  transition: $res;
+}
+
+@function darken-color($color, $adjustment: 10%) {
+  @return adjust-color($color, $lightness: -1 * $adjustment);
+}
