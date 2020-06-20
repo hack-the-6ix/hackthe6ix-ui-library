@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Storybook CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
+    
+    - name: Cache node
+      uses: actions/cache@v2
+      with:
+        key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+            ${{ runner.os }}-
+        path: |
+          ~/.npm
+    
+    - name: Build + Install
+      run: |
+        npm ci
+        npm run build:storybook
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: app
+
+    
