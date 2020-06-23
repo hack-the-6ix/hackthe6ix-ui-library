@@ -1,6 +1,6 @@
 {
   "name": "@hackthe6ix/vue-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "sideEffects": false,
   "files": [
@@ -8,12 +8,12 @@
     "dist/*"
   ],
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/hack-the-6ix/ui-library.git"
+    "type": "git",
+    "url": "git+https://github.com/hack-the-6ix/ui-library.git"
   },
   "author": "Hack The 6ix",
   "bugs": {
-      "url": "https://github.com/hack-the-6ix/ui-library/issues"
+    "url": "https://github.com/hack-the-6ix/ui-library/issues"
   },
   "homepage": "https://hack-the-6ix.github.io/ui-library",
   "scripts": {

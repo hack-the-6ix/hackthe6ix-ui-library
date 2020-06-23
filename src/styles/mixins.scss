@@ -36,6 +36,50 @@
   transition: $res;
 }
 
+// Flex function thingy - (direction, all + self), (direction, all, self) OR (all, self)
+@mixin flex($p1: null, $p2: $p1, $p3: $p2) {
+  $d: (column, row, column-reverse, row-reverse);
+
+  display: flex;
+  @if $p1 {
+    @if index($d, $p1) {
+      flex-direction: $p1;
+      @if $p2 != $p1 {
+        @if $p2 != flex-start {
+          justify-content: $p2;
+        }
+        @if $p3 != flex-start {
+          align-items: $p3;
+        }
+      }
+    } @else {
+      @if $p1 != flex-start {
+        justify-content: $p1;
+      }
+      @if $p2 != flex-start {
+        align-items: $p2;
+      }
+    }
+  }
+}
+
+// Positioning with defaulting for non-relative positioning
+@mixin position(
+  $position,
+  $margin: auto,
+  $top: 0,
+  $right: $top,
+  $bottom: $top,
+  $left: $right
+) {
+  position: $position;
+  margin: $margin;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
 @function darken-color($color, $adjustment: 10%) {
   @return adjust-color($color, $lightness: -1 * $adjustment);
 }

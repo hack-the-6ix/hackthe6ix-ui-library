@@ -1,0 +1,17 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import ToReact from '../../helpers/ToReact';
+import Checkbox from '.';
+
+<Meta title='Checkbox' component={Checkbox} />
+
+<Title />
+
+One checkky boi
+
+<Props of={Checkbox} />
+
+<Preview>
+  <ToReact vue={Checkbox} label='What the frick?' name='wtf' />
+  <ToReact vue={Checkbox} label='What the frick?' name='wtf' required={true} />
+  <ToReact vue={Checkbox} label='What the frick?' name='wtf' required={true} />
+</Preview>
