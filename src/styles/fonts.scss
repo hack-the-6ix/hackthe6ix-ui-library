@@ -47,6 +47,11 @@ $_: (
   @return $res;
 }
 
+@function font-family($name) {
+  $config: map-get($_, $name);
+  @return "#{$name}", map-get($config, fallback);
+}
+
 @mixin load ($path: '/') {
   @each $tag, $config in $_ {
     @each $source in map-get($config, sources) {
@@ -59,9 +64,8 @@ $_: (
       }
     }
   }
-}
 
-@function font-family($name) {
-  $config: map-get($_, $name);
-  @return "#{$name}", map-get($config, fallback);
+  html, button, input, select, textarea {
+    font-family: font-family(Avenir);
+  }
 }

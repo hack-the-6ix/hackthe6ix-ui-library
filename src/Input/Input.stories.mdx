@@ -1,0 +1,36 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import ToReact from '../../helpers/ToReact';
+import Input from '.';
+
+<Meta title='Input' component={Input} />
+
+<Title />
+
+A single line input field
+
+<Props of={Input} />
+
+## Basic usage
+
+<Preview>
+  <ToReact vue={Input} name='wtf' placeholder='REEEEEEEEEEEEEEEEEEEE'/>
+</Preview>
+
+## With label props
+
+<Preview>
+  <ToReact vue={Input} name='wtf' label='This is label' description='This is a description' placeholder='REEEEEEEEEEEEEEEEEEEE'/>
+</Preview>
+
+## With error
+
+<Preview isColumn>
+  <ToReact vue={Input} name='wtf' label='With boolean error' error placeholder='REEEEEEEEEEEEEEEEEEEE'/>
+  <ToReact vue={Input} name='wtf' label='With string error' error='wtf man >:c' placeholder='REEEEEEEEEEEEEEEEEEEE'/>
+</Preview>
+
+## with disabled
+
+<Preview>
+  <ToReact vue={Input} name='wtf' label='Disabled :c' placeholder='REEEEEEEEEEEEEEEEEEEE' disabled/>
+</Preview>

@@ -10,6 +10,8 @@ $sand: #FAE0A1;
 $magenta: #8B3763;
 $error: #F14646;
 $success: #18B918;
+$background: #ffffff;
+$text: #6d6d6d;
 
 $_: (
   teal: $teal,
@@ -22,14 +24,16 @@ $_: (
   magenta: $magenta,
   error: $error,
   sucess: $success,
+  background: $background,
+  text: $text,
 );
 
 // Creates states for colors
 @function _color_generator($tag, $color) {
   @return (
     #{$tag}: $color,
-    #{$tag}-hover: darken($color, 10%),
-    #{$tag}-active: darken($color, 20%),
+    #{$tag}-hover: darken($color, 5%),
+    #{$tag}-active: darken($color, 10%),
   );
 }
 
@@ -44,6 +48,15 @@ $__: ();
     @each $tag, $val in mixins.to-css-var($__) {
       #{$tag}: #{$val};
     }
+  }
+
+  html {
+    background-color: var(--background);
+    color: var(--text);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--teal);
   }
 }
 

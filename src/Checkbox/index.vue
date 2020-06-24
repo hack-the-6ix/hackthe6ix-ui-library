@@ -48,9 +48,9 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '../styles/mixins.scss';
-@import '../styles/_variables.scss';
-@import '../styles/colors.scss';
+@import '../styles/mixins';
+@import '../styles/variables';
+@import '../styles/colors';
 
 .checkbox {
   @include flex;

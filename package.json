@@ -30,7 +30,8 @@
   "keywords": [],
   "license": "ISC",
   "peerDependencies": {
-    "vue": "*"
+    "vue": "*",
+    "vue-awesome": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -50,7 +51,9 @@
     "sass": "^1.26.8",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
+    "uuid": "^8.2.0",
     "vue": "^2.6.11",
+    "vue-awesome": "^4.0.2",
     "vue-loader": "^15.9.2"
   }
 }

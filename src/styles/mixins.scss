@@ -18,19 +18,37 @@
   @return $res;
 }
 
+// Builds a transition with given props
+@function _makeTransition($attr, $speed) {
+  // Default (Please never do this)
+  $res: all map-get(variables.$speed, $speed) variables.$ease;
+
+  // Attribute with default props
+  @if type-of($attr) == string {
+    $res: $attr map-get(variables.$speed, $speed) variables.$ease;
+
+    // Attribute with custom props
+  } @else if type-of($attr) == map {
+    $speed: if(map-has-key($attr, speed), pipe($attr, speed), $speed);
+    $res: pipe($attr, name) map-get(variables.$speed, $speed) variables.$ease;
+  }
+
+  @return $res;
+}
+
 // Add tranisitions to attributes because im lazy
-@mixin transition($attrs: null, $speed: NORMAL, $ease: NORMAL, $delay: 0ms) {
+@mixin transition($attrs: null, $speed: normal) {
   $res: '';
 
   // Multiple attributes
   @if type-of($attrs) == list {
     @each $attr in $attrs {
-      $res: #{$res}, makeTransition($attr, $speed, $ease, $delay);
+      $res: #{$res}, _makeTransition($attr, $speed);
     }
 
     // Single/no attribute
   } @else {
-    $res: makeTransition($attrs, $speed, $ease, $delay);
+    $res: _makeTransition($attrs, $speed);
   }
 
   transition: $res;
@@ -80,6 +98,16 @@
   left: $left;
 }
 
-@function darken-color($color, $adjustment: 10%) {
-  @return adjust-color($color, $lightness: -1 * $adjustment);
+@mixin scroll {
+  overflow: auto;
+  &::-webkit-scrollbar {
+    background-color: var(--background-hover);
+    height: 6px;
+    width: 6px;
+
+    &-thumb {
+      background-color: var(--text);
+      border-radius: 999px;
+    }
+  }
 }
