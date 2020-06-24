@@ -150,7 +150,7 @@ export default {
   width: 100%;
 
   @media (hover: hover) {
-    &:focus + div {
+    &:focus + .display {
       display: none;
     }
   }
@@ -158,6 +158,11 @@ export default {
 
 .display {
   @include mixins.position(absolute);
+  display: none;
+
+  @media (hover: hover) {
+    display: block;
+  }
 }
 
 .arrow {
