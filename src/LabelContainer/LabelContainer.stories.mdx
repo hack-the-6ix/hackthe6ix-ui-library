@@ -1,8 +1,11 @@
 import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
 import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
 import LabelContainer from '.';
 
 <Meta title='LabelContainer' component={LabelContainer} />
+
+<ToReact vue={Loader} />
 
 <Title />
 
@@ -14,30 +17,38 @@ A container used for labelling form components and/or sections with descriptions
 
 <Preview>
   <ToReact vue={LabelContainer} name='twt' label='owo'>
-    <input name='twt' placeholder='text'/>
+    <input name='twt' placeholder='text' />
   </ToReact>
 </Preview>
 
 ## With description
+
 <Preview>
   <ToReact vue={LabelContainer} name='twt' label='owo' description='uwu'>
-    <input name='twt' placeholder='text'/>
+    <input name='twt' placeholder='text' />
   </ToReact>
 </Preview>
 
 ## With required
+
 <Preview>
   <ToReact vue={LabelContainer} name='twt' label='owo' required>
-    <input name='twt' placeholder='text'/>
+    <input name='twt' placeholder='text' />
   </ToReact>
 </Preview>
 
 ## With error
+
 <Preview isColumn>
   <ToReact vue={LabelContainer} name='twt' label='Boolean error' error>
-    <input name='twt' placeholder='text'/>
+    <input name='twt' placeholder='text' />
   </ToReact>
-  <ToReact vue={LabelContainer} name='twt' label='Text error' error='Pee pee poo poo'>
-    <input name='twt' placeholder='text'/>
+  <ToReact
+    vue={LabelContainer}
+    name='twt'
+    label='Text error'
+    error='Pee pee poo poo'
+  >
+    <input name='twt' placeholder='text' />
   </ToReact>
 </Preview>

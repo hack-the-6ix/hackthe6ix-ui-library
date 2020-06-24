@@ -17,7 +17,7 @@ export default {
         error: this.error,
         label: this.label,
         name: this.name,
-      }
-    }
-  }
+      };
+    },
+  },
 };

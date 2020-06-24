@@ -1,8 +1,11 @@
 import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
 import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
 import Select from '.';
 
 <Meta title='Select' component={Select} />
+
+<ToReact vue={Loader} />
 
 <Title />
 
@@ -11,22 +14,59 @@ A dropdown of options with native integration (phone and keyboard users - REJOIC
 <Props of={Select} />
 
 ## Basic usage
+
 <Preview>
-  <ToReact vue={Select} name='owo' options={['a', 'b', 'c', 'd', 'e']} placeholder='NANI?'/>
+  <ToReact
+    vue={Select}
+    name='owo'
+    options={['a', 'b', 'c', 'd', 'e']}
+    placeholder='NANI?'
+  />
 </Preview>
 
 ## With label props
+
 <Preview>
-  <ToReact vue={Select} name='owo' options={['a', 'b', 'c', 'd', 'e']} placeholder='NANI?' label='This is a label' description='This is a description'/>
+  <ToReact
+    vue={Select}
+    name='owo'
+    options={['a', 'b', 'c', 'd', 'e']}
+    placeholder='NANI?'
+    label='This is a label'
+    description='This is a description'
+  />
 </Preview>
 
 ## With error
+
 <Preview isColumn>
-  <ToReact vue={Select} name='owo' options={['a', 'b', 'c', 'd', 'e']} placeholder='NANI?' label='With boolean error' error/>
-  <ToReact vue={Select} name='owo' options={['a', 'b', 'c', 'd', 'e']} placeholder='NANI?' label='With string error' error='owo wats dis?'/>
+  <ToReact
+    vue={Select}
+    name='owo'
+    options={['a', 'b', 'c', 'd', 'e']}
+    placeholder='NANI?'
+    label='With boolean error'
+    error
+  />
+  <ToReact
+    vue={Select}
+    name='owo'
+    options={['a', 'b', 'c', 'd', 'e']}
+    placeholder='NANI?'
+    label='With string error'
+    error='owo wats dis?'
+  />
 </Preview>
 
 ## With disabled
+
 <Preview>
-  <ToReact vue={Select} name='owo' options={['a', 'b', 'c', 'd', 'e']} placeholder='NANI?' label='This is a label' disabled/>
+  <ToReact
+    vue={Select}
+    name='owo'
+    options={['a', 'b', 'c', 'd', 'e']}
+    placeholder='NANI?'
+    label='This is a label'
+    disabled
+  />
 </Preview>

@@ -1,4 +1,4 @@
-export default ({
+export default {
   inject: [
     'form_updateError',
     'form_updateData',
@@ -45,4 +45,4 @@ export default ({
       }
     },
   },
-});
+};

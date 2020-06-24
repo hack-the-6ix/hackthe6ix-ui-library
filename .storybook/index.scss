@@ -1,5 +1,0 @@
-@use '../src/styles/colors';
-@use '../src/styles/fonts';
-
-@include fonts.load('../static/');
-@include colors.load;

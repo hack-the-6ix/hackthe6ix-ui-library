@@ -1,14 +1,14 @@
 <template>
   <LabelContainer v-bind="labelContainerProps">
     <input
-      :class='[$style.input, { [$style[`input--error`]]: error }]'
-      :autocomplete='autocomplete'
-      :placeholder='placeholder'
-      :aria-invalid='!!error'
-      :disabled='disabled'
-      @input='formHandler'
-      :value='formValue'
-      :type='type'
+      :class="[$style.input, { [$style[`input--error`]]: error }]"
+      :autocomplete="autocomplete"
+      :placeholder="placeholder"
+      :aria-invalid="!!error"
+      :disabled="disabled"
+      @input="formHandler"
+      :value="formValue"
+      :type="type"
     />
   </LabelContainer>
 </template>
@@ -26,11 +26,8 @@ export default {
   props: {
     type: String,
   },
-  mixins: [
-    LabelContainerMixin,
-    formableMixin,
-  ],
-}
+  mixins: [LabelContainerMixin, formableMixin],
+};
 </script>
 
 <style lang="scss" module>
@@ -46,7 +43,8 @@ export default {
   border-radius: variables.$radius;
   outline: none;
 
-  &:active:not(:disabled), &:focus {
+  &:active:not(:disabled),
+  &:focus {
     border-color: var(--teal);
   }
 

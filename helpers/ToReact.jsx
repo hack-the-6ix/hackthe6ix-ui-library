@@ -11,7 +11,8 @@ export default ({ vue, children, ...props }) => {
     const id = v4();
     const app = new Vue({
       el: el.current,
-      render: (h) => h(vue, { props }, children && [h('span', { attrs: { id } })]),
+      render: (h) =>
+        h(vue, { props }, children && [h('span', { attrs: { id } })]),
       mounted() {
         if (children) {
           ReactDOM.render(
@@ -19,7 +20,7 @@ export default ({ vue, children, ...props }) => {
             document.getElementById(id),
           );
         }
-      }
+      },
     });
 
     return () => app.$destroy();

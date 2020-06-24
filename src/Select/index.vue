@@ -1,39 +1,54 @@
 <template>
-  <LabelContainer v-bind='labelContainerProps'>
-    <div :class='$style.container'>
+  <LabelContainer v-bind="labelContainerProps">
+    <div :class="$style.container">
       <select
-        :class='[$style.field, $style.select, {[$style[`field--error`]]: error}]'
-        :autocomplete='autocomplete'
-        :aria-invalid='!!error'
-        :disabled='disabled'
-        @input='formHandler'
-        :value='formValue'
+        :class="[
+          $style.field,
+          $style.select,
+          { [$style[`field--error`]]: error },
+        ]"
+        :autocomplete="autocomplete"
+        :aria-invalid="!!error"
+        :disabled="disabled"
+        @input="formHandler"
+        :value="formValue"
       >
-        <option v-if='placeholder' value='' selected disabled hidden>
+        <option v-if="placeholder" value="" selected disabled hidden>
           {{ placeholder }}
         </option>
         <option
-          v-for='[value, label] in Object.entries(options)'
-          :value='value'
-          :key='value'
+          v-for="[value, label] in Object.entries(options)"
+          :value="value"
+          :key="value"
         >
           {{ label }}
         </option>
       </select>
       <div
-        :class='[$style.field, $style.display, {[$style[`field--error`]]: error}, {[$style[`field--disabled`]]: disabled}]'
-        @click='show = true && !disabled'
+        :class="[
+          $style.field,
+          $style.display,
+          { [$style[`field--error`]]: error },
+          { [$style[`field--disabled`]]: disabled },
+        ]"
+        @click="show = true && !disabled"
       >
         {{ options[formValue] || placeholder }}
       </div>
-      <Icon :class='[$style.arrow, { [$style[`arrow--flip`]]: show }]' name='angle-down'/>
+      <Icon
+        :class="[$style.arrow, { [$style[`arrow--flip`]]: show }]"
+        name="angle-down"
+      />
     </div>
-    <ul :class='[$style.dropdown, { [$style[`dropdown--show`]]: show }]'>
+    <ul :class="[$style.dropdown, { [$style[`dropdown--show`]]: show }]">
       <li
-        :class='[$style.item, { [$style[`item--selected`]]: value === formValue }]'
-        v-for='[value, label] in Object.entries(options)'
-        @click='() => formHandler({ target: { value } })'
-        :key='value'
+        :class="[
+          $style.item,
+          { [$style[`item--selected`]]: value === formValue },
+        ]"
+        v-for="[value, label] in Object.entries(options)"
+        @click="() => formHandler({ target: { value } })"
+        :key="value"
       >
         {{ label }}
       </li>
@@ -55,10 +70,7 @@ export default {
     LabelContainer,
     Icon,
   },
-  mixins: [
-    LabelContainerMixin,
-    formableMixin,
-  ],
+  mixins: [LabelContainerMixin, formableMixin],
   data() {
     return {
       show: false,
@@ -86,8 +98,8 @@ export default {
         window.clearTimeout(this.timer);
         window.removeEventListener('click', this.windowHandler);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -111,7 +123,8 @@ export default {
   border-radius: variables.$radius;
   cursor: pointer;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: var(--teal);
   }
 
@@ -119,7 +132,8 @@ export default {
     background-color: var(--background-hover);
   }
 
-  &:disabled, &--disabled {
+  &:disabled,
+  &--disabled {
     background-color: var(--background-hover);
     cursor: not-allowed;
   }
@@ -160,7 +174,8 @@ export default {
   @include mixins.transition(transform opacity max-height);
   @include mixins.scroll;
 
-  margin: map-get(variables.$unit, element) 0 map-get(variables.$unit, element) * -1.5;
+  margin: map-get(variables.$unit, element) 0 map-get(variables.$unit, element) *
+    -1.5;
   font-size: map-get(variables.$text, smaller);
   border: 2px solid var(--background-active);
   background-color: var(--background);
@@ -187,7 +202,8 @@ export default {
   padding: map-get(variables.$unit, element);
   cursor: pointer;
 
-  &--selected, &:hover {
+  &--selected,
+  &:hover {
     background-color: var(--background-hover);
   }
 

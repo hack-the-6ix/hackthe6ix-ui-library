@@ -1,0 +1,7 @@
+@use '../src/styles/colors';
+@use '../src/styles/fonts';
+
+:global {
+  @include fonts.load;
+  @include colors.load;
+}
