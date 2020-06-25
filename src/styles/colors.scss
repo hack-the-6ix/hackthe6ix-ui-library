@@ -13,19 +13,19 @@ $disabled: darken($background, 15%);
 $text: #6d6d6d;
 
 $colors: (
-  text: $text,
-  teal: $teal,
-  aqua: $aqua,
-  pink: $pink,
-  yellow: $yellow,
-  navy: $navy,
-  light: $light_blue,
-  sand: $sand,
-  magenta: $magenta,
-  error: $error,
-  success: $success,
-  background: $background,
-  disabled: $disabled,
+  'text': $text,
+  'teal': $teal,
+  'aqua': $aqua,
+  'pink': $pink,
+  'yellow': $yellow,
+  'navy': $navy,
+  'light': $light_blue,
+  'sand': $sand,
+  'magenta': $magenta,
+  'error': $error,
+  'success': $success,
+  'background': $background,
+  'disabled': $disabled,
 );
 
 @function to-css-var($map, $acc: '-') {

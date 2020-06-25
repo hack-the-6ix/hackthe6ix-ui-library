@@ -1,10 +1,17 @@
 import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
 import vars from '../../helpers/getVariables';
 import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
 import 'vue-awesome/icons/flag';
 import Button from '.';
 
+<div>
+  {console.log(vars.tags.replace(/, /g, ',').replace(/"/g, '').split(','))}
+</div>
+
 <Meta title='Button' component={Button} />
+
+<ToReact vue={Loader} />
 
 <Title />
 
@@ -30,19 +37,21 @@ One clicky boi
 
 <Preview>
   {vars.tags
-    .split(', ')
-    .filter((color) => !['background', 'disabled'].includes(color))
+    .replace(/, /g, ',')
+    .replace(/"/g, '')
+    .split(',') // Normalize variables
+    .filter((_) => !['background', 'disabled'].includes(_)) // Remove some colors
     .map((color) => (
       <div
-        key={color}
         style={{
           width: 200,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'stretch',
         }}
+        key={color}
       >
-        <ToReact vue={Button} color={color}>
+        <ToReact vue={Button} variant='solid' color={color}>
           {color}
           {color === 'text' && ' (Default)'}
         </ToReact>
@@ -67,7 +76,7 @@ One clicky boi
 ## Icons
 
 <Preview>
-  <ToReact vue={Button} color='light' icon={{ left: 'flag' }}>
+  <ToReact vue={Button} variant='solid' color='light' icon={{ left: 'flag' }}>
     Left icon
   </ToReact>
   <ToReact vue={Button} variant='outline' color='navy' icon={{ right: 'flag' }}>
@@ -86,7 +95,7 @@ One clicky boi
 ## Loading
 
 <Preview>
-  <ToReact vue={Button} color='text' loading>
+  <ToReact vue={Button} variant='solid' color='text' loading>
     Left icon
   </ToReact>
   <ToReact vue={Button} variant='outline' color='yellow' loading>
