@@ -1,6 +1,6 @@
 {
   "name": "@hackthe6ix/vue-ui",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "sideEffects": false,
   "files": [
@@ -30,8 +30,10 @@
   "keywords": [],
   "license": "ISC",
   "peerDependencies": {
-    "vue": "*",
-    "vue-awesome": "*"
+    "vue": "*"
+  },
+  "dependencies": {
+    "vue-awesome": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
