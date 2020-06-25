@@ -1,6 +1,6 @@
-@import '../styles/fonts.scss';
+@use './fonts.scss';
 
-$font: font-family(Avenir);
+$font: fonts.font-family(Avenir);
 
 $unit: (
   section: 3.6rem,
@@ -9,6 +9,8 @@ $unit: (
   element: 0.6rem,
   tad: 0.3rem,
 );
+
+$button_type: (solid, outline, ghost);
 
 $text: (
   large: 1.5rem,
@@ -19,11 +21,6 @@ $text: (
 );
 
 $radius: 0.4rem;
-
-$state: (
-  error: #f14646,
-  success: #18b918,
-);
 
 $speed: (
   fast: 150ms,
@@ -42,7 +39,11 @@ $media: (
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 
 :export {
-  @each $tag, $val in map-merge($speed, $media) {
-    #{$tag}: #{$val};
+  @each $tag, $val in $speed {
+    speed_#{$tag}: #{$val};
   }
+  @each $tag, $val in $media {
+    media_#{$tag}: #{$val};
+  }
+  button_type: $button_type;
 }

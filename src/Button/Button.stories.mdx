@@ -1,5 +1,7 @@
 import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import vars from '../../helpers/getVariables';
 import ToReact from '../../helpers/ToReact';
+import 'vue-awesome/icons/flag';
 import Button from '.';
 
 <Meta title='Button' component={Button} />
@@ -10,12 +12,87 @@ One clicky boi
 
 <Props of={Button} />
 
+## Variants
+
 <Preview>
-  <ToReact vue={Button}>What the frick?</ToReact>
-  <ToReact vue={Button} disabled={true}>
-    What the frick?
+  <ToReact vue={Button} color='aqua' variant='solid'>
+    Solid Variant (Default)
   </ToReact>
-  <ToReact vue={Button} secondary={true}>
-    What the frick?
+  <ToReact vue={Button} color='success' variant='outline'>
+    Outline Variant
+  </ToReact>
+  <ToReact vue={Button} color='error' variant='ghost'>
+    Ghost Variant
+  </ToReact>
+</Preview>
+
+## Different colors
+
+<Preview>
+  {vars.tags
+    .split(', ')
+    .filter((color) => !['background', 'disabled'].includes(color))
+    .map((color) => (
+      <div
+        key={color}
+        style={{
+          width: 200,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+        }}
+      >
+        <ToReact vue={Button} color={color}>
+          {color}
+          {color === 'text' && ' (Default)'}
+        </ToReact>
+      </div>
+    ))}
+</Preview>
+
+## Disabled
+
+<Preview>
+  <ToReact vue={Button} variant='solid' disabled>
+    Solid Variant
+  </ToReact>
+  <ToReact vue={Button} variant='outline' disabled>
+    Outline Variant
+  </ToReact>
+  <ToReact vue={Button} variant='ghost' disabled>
+    Ghost Variant
+  </ToReact>
+</Preview>
+
+## Icons
+
+<Preview>
+  <ToReact vue={Button} color='light' icon={{ left: 'flag' }}>
+    Left icon
+  </ToReact>
+  <ToReact vue={Button} variant='outline' color='navy' icon={{ right: 'flag' }}>
+    Right icon
+  </ToReact>
+  <ToReact
+    vue={Button}
+    variant='ghost'
+    color='pink'
+    icon={{ left: 'flag', right: 'flag' }}
+  >
+    Both icon
+  </ToReact>
+</Preview>
+
+## Loading
+
+<Preview>
+  <ToReact vue={Button} color='text' loading>
+    Left icon
+  </ToReact>
+  <ToReact vue={Button} variant='outline' color='yellow' loading>
+    Right icon
+  </ToReact>
+  <ToReact vue={Button} variant='ghost' color='success' loading>
+    Both icon
   </ToReact>
 </Preview>

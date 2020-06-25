@@ -22,8 +22,6 @@ export default ({ vue, children, ...props }) => {
         }
       },
     });
-
-    return () => app.$destroy();
   });
 
   return React.createElement('div', { ref: el });

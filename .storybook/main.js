@@ -5,7 +5,10 @@ module.exports = {
       name: '@storybook/preset-scss',
       options: {
         cssLoaderOptions: {
-          modules: true,
+          modules: {
+            localIdentName: '[local]-[hash:base64:6]',
+          },
+          importLoaders: 1,
         },
       },
     },

@@ -1,23 +1,5 @@
 @use './variables';
 
-@function to-css-var($map, $acc: '-') {
-  $res: ();
-  @each $tag, $value in $map {
-    $_tag: $acc + '-' + $tag;
-    @if type-of($value) == 'map' {
-      $res: map-merge($res, to-css-var($value, $_tag));
-    } @else {
-      $res: map-merge(
-        $res,
-        (
-          $_tag: $value,
-        )
-      );
-    }
-  }
-  @return $res;
-}
-
 // Builds a transition with given props
 @function _makeTransition($attr, $speed) {
   // Default (Please never do this)

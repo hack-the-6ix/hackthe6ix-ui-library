@@ -1,19 +1,19 @@
-@use './mixins';
-
-$teal: #23B5AF;
-$aqua: #A9DED9;
-$pink: #EC9D89;
-$yellow: #EDBA4B;
-$navy: #0E1355;
-$light_blue: #88D2EE;
-$sand: #FAE0A1;
-$magenta: #8B3763;
-$error: #F14646;
-$success: #18B918;
+$teal: #23b5af;
+$aqua: #a9ded9;
+$pink: #ec9d89;
+$yellow: #edba4b;
+$navy: #0e1355;
+$light_blue: #88d2ee;
+$sand: #fae0a1;
+$magenta: #8b3763;
+$error: #f14646;
+$success: #18b918;
 $background: #ffffff;
+$disabled: darken($background, 15%);
 $text: #6d6d6d;
 
-$_: (
+$colors: (
+  text: $text,
   teal: $teal,
   aqua: $aqua,
   pink: $pink,
@@ -23,10 +23,28 @@ $_: (
   sand: $sand,
   magenta: $magenta,
   error: $error,
-  sucess: $success,
+  success: $success,
   background: $background,
-  text: $text,
+  disabled: $disabled,
 );
+
+@function to-css-var($map, $acc: '-') {
+  $res: ();
+  @each $tag, $value in $map {
+    $_tag: $acc + '-' + $tag;
+    @if type-of($value) == 'map' {
+      $res: map-merge($res, to-css-var($value, $_tag));
+    } @else {
+      $res: map-merge(
+        $res,
+        (
+          $_tag: $value,
+        )
+      );
+    }
+  }
+  @return $res;
+}
 
 // Creates states for colors
 @function _color_generator($tag, $color) {
@@ -34,18 +52,20 @@ $_: (
     #{$tag}: $color,
     #{$tag}-hover: darken($color, 5%),
     #{$tag}-active: darken($color, 10%),
+    #{$tag}-highlight: rgba($color, 0.05),
+    #{$tag}-highlight-active: rgba($color, 0.1)
   );
 }
 
-$__: ();
-@each $tag, $val in $_ {
-  $__: map-merge($__, _color_generator($tag, $val));
+$_: ();
+@each $tag, $val in $colors {
+  $_: map-merge($_, _color_generator($tag, $val));
 }
 
 // Create css variables
 @mixin load {
   :root {
-    @each $tag, $val in mixins.to-css-var($__) {
+    @each $tag, $val in to-css-var($_) {
       #{$tag}: #{$val};
     }
   }
@@ -55,14 +75,20 @@ $__: ();
     color: var(--text);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: var(--teal);
   }
 }
 
 // Expose variables for usage in code
 :export {
-  @each $tag, $val in mixins.to-css-var($__) {
+  tags: map-keys($colors);
+  @each $tag, $val in to-css-var($_) {
     #{$tag}: #{$val};
   }
 }

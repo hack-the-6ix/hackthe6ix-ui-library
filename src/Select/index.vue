@@ -59,7 +59,7 @@
 <script>
 import LabelContainerMixin from '../LabelContainer/LabelContainerMixin';
 import formableMixin from '../utils/mixins/formableMixin';
-import variables from '../styles/variables.scss';
+import { speed_normal } from '../styles/variables.scss';
 import LabelContainer from '../LabelContainer';
 import Icon from 'vue-awesome/components/Icon';
 import 'vue-awesome/icons/angle-down';
@@ -77,7 +77,7 @@ export default {
     };
   },
   props: {
-    options: Object || Array,
+    options: Object | Array,
   },
   methods: {
     windowHandler({ target }) {
@@ -93,7 +93,7 @@ export default {
       if (val) {
         this.timer = window.setTimeout(() => {
           window.addEventListener('click', this.windowHandler);
-        }, variables.normal);
+        }, speed_normal);
       } else {
         window.clearTimeout(this.timer);
         window.removeEventListener('click', this.windowHandler);
@@ -196,7 +196,7 @@ export default {
   &--show {
     transform: translateY(0);
     pointer-events: all;
-    max-height: 9.5rem;
+    max-height: 8.55rem;
     margin-bottom: 0;
     opacity: 1;
   }

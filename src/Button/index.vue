@@ -1,104 +1,202 @@
 <template>
   <button
-    @click="click"
-    :disabled="disabled"
-    tabindex="-1"
     :class="[
-      { 'button--secondary': secondary, 'button--loading': loading },
       $style.button,
+      $style[`button--color-${color}`],
+      $style[`button--variant-${variant}`],
     ]"
+    :disabled="disabled"
   >
-    <icon
-      v-if="!loading && icon"
-      class="button__icon"
-      :class="{ 'button__icon--only': !$slots.default }"
-      :icon="icon"
+    <div :class="[$style.content, { [$style[`content--loading`]]: loading }]">
+      <Icon
+        v-if="icon.left"
+        :name="icon.left"
+        :class="[$style.icon, $style[`icon--left`]]"
+      />
+      <slot />
+      <Icon
+        v-if="icon.right"
+        :name="icon.right"
+        :class="[$style.icon, $style[`icon--right`]]"
+      />
+    </div>
+    <Icon
+      name="circle-notch"
+      :class="[
+        'fa-spin',
+        $style.icon,
+        $style[`icon--loading`],
+        { [$style[`icon--loading-show`]]: loading },
+      ]"
     />
-    <slot v-if="!loading" />
-    <icon v-if="loading" icon="circle-notch" spin />
   </button>
 </template>
 
 <script>
+import { button_type } from '../styles/variables.scss';
+import Icon from 'vue-awesome/components/Icon';
+import { tags } from '../styles/colors.scss';
+import 'vue-awesome/icons/circle-notch';
+const variants = button_type.split(', ');
+const colors = tags.split(', ');
+
 export default {
   name: 'Button',
+  components: {
+    Icon,
+  },
   props: {
-    secondary: Boolean,
+    variant: {
+      validator: (_) => variants.includes(_),
+      default: variants[0],
+      type: String,
+    },
+    color: {
+      validator: (_) =>
+        colors.includes(_) && !['background', 'disabled'].includes(_),
+      default: colors[0],
+      type: String,
+    },
     disabled: Boolean,
     loading: Boolean,
-    icon: [String, Array],
-    click: {
-      type: Function,
-      default: () => () => {},
+    value: String,
+    type: String,
+    name: String,
+    icon: {
+      validator: (_) => _.left || _.right,
+      default: () => ({}),
+      type: Object,
     },
   },
 };
 </script>
 
 <style lang="scss" module>
-@import '../styles/mixins';
-@import '../styles/variables';
-@import '../styles/colors';
+@use '../styles/variables';
+@use '../styles/mixins';
+@use '../styles/colors';
 
 .button {
-  @include transition(background-color);
-  background-color: $teal;
+  @include mixins.transition(background-color border-color color);
+  font-size: map-get(variables.$text, smaller);
+  border-radius: variables.$radius;
+  border-style: solid;
+  position: relative;
+  border-width: 2px;
   font-weight: bold;
-  outline: none;
-  font-family: $font;
-  padding: 12px 20px;
-  border: none;
+  overflow: hidden;
   cursor: pointer;
-  font-size: 0.95rem;
-  border-radius: 6px;
-  color: white;
+  outline: none;
 
-  &:hover,
-  &:active {
-    background-color: darken-color($teal);
+  @each $tag in map-keys(colors.$colors) {
+    @if $tag != background {
+      &--color-#{'' + $tag} {
+        --color-highlight-active: var(--#{$tag}-highlight-active);
+        --color-highlight: var(--#{$tag}-highlight);
+        --color-active: var(--#{$tag}-active);
+        --color-hover: var(--#{$tag}-hover);
+        --color: var(--#{$tag});
+      }
+    }
   }
 
-  &--secondary {
-    @include transition(background-color border-color color);
-    color: $teal;
-    padding: 10.5px 18.5px;
-    border: 1.5px solid $teal;
+  &--variant-solid {
+    background-color: var(--color);
+    border-color: var(--color);
+    color: var(--background);
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: var(--color-hover);
+        border-color: var(--color-hover);
+      }
+
+      &:active {
+        background-color: var(--color-active);
+        border-color: var(--color-active);
+      }
+    }
+  }
+
+  &--variant-outline {
     background-color: transparent;
+    border-color: var(--color);
+    color: var(--color);
 
-    &:hover {
-      background-color: $teal;
-      color: white;
-    }
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: var(--color);
+        border-color: var(--color);
+        color: var(--background);
+      }
 
-    &:active {
-      background-color: darken-color($teal);
-      border-color: darken-color($teal);
-      color: white;
+      &:active {
+        background-color: var(--color-hover);
+        border-color: var(--color-hover);
+        color: var(--background);
+      }
     }
   }
 
-  &__icon {
-    margin-right: 8px;
-    &--only {
-      margin-right: 0;
+  &--variant-ghost {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color);
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: var(--color-highlight);
+      }
+
+      &:active {
+        background-color: var(--color-highlight-active);
+      }
     }
   }
 
   &:disabled {
-    @include transition(background-color border-color color);
-    &,
-    &:hover,
-    &:active {
-      background-color: #d8d8d8;
-      border-color: #d8d8d8;
-      color: white;
-    }
+    --color: var(--disabled);
+    cursor: not-allowed;
+  }
+}
 
-    &:hover {
-      cursor: not-allowed;
-      background-color: darken-color(#d8d8d8);
-      border-color: darken-color(#d8d8d8);
+.icon {
+  width: map-get(variables.$unit, element) * 1.2;
+
+  &--left {
+    margin-right: map-get(variables.$unit, element) * 1.2;
+  }
+
+  &--right {
+    margin-left: map-get(variables.$unit, element) * 1.2;
+  }
+
+  &--loading {
+    @include mixins.transition(transform opacity);
+    @include mixins.position(absolute);
+    transform: translateY(100%);
+    opacity: 0;
+
+    &-show {
+      transform: translateY(0);
+      opacity: 1;
     }
+  }
+}
+
+.content {
+  @include mixins.transition(transform opacity);
+  padding: map-get(variables.$unit, element) * 1.2;
+  align-items: center;
+  display: flex;
+  opacity: 1;
+
+  &--loading {
+    transform: translateY(-100%);
+    opacity: 0;
   }
 }
 </style>
