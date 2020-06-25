@@ -1,0 +1,116 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import CustomReact from '../../helpers/CustomReact';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import Button from '../Button';
+import Stack from '.';
+
+<Meta title='Stack' component={Stack} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+This is how not to use vue kids... Just trust that this stuff works cus it's pure cancer to make
+
+<Props of={Stack} />
+
+## Basic usage
+
+<Preview>
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, {}, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+          h(Button, {}, 'twt'),
+        ]);
+      },
+    }}
+  />
+</Preview>
+
+## Directions
+
+<Preview>
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, { props: { direction: 'row' } }, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+          h(Button, {}, 'twt'),
+        ]);
+      },
+    }}
+  />
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, { props: { direction: 'column' } }, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+          h(Button, {}, 'twt'),
+        ]);
+      },
+    }}
+  />
+</Preview>
+
+## Justify
+
+<Preview isColumn>
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, { props: { justify: 'start' } }, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+        ]);
+      },
+    }}
+  />
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, { props: { justify: 'end' } }, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+        ]);
+      },
+    }}
+  />
+</Preview>
+
+## Spacing
+
+<Preview isColumn>
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, { props: { spacing: 'section' } }, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+        ]);
+      },
+    }}
+  />
+  <CustomReact
+    config={{
+      components: { Stack, Button },
+      render(h) {
+        return h(Stack, { props: { spacing: 'tad' } }, [
+          h(Button, {}, 'owo'),
+          h(Button, {}, 'uwu'),
+        ]);
+      },
+    }}
+  />
+</Preview>

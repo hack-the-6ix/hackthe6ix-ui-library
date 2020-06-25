@@ -10,8 +10,6 @@ $unit: (
   tad: 0.3rem,
 );
 
-$button_type: (solid, outline, ghost);
-
 $text: (
   large: 1.5rem,
   larger: 1.2rem,
@@ -45,5 +43,5 @@ $ease: cubic-bezier(0.4, 0, 0.2, 1);
   @each $tag, $val in $media {
     media_#{$tag}: #{$val};
   }
-  button_type: $button_type;
+  units: map-keys($unit);
 }

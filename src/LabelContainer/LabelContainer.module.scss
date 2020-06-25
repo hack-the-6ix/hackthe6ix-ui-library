@@ -1,0 +1,22 @@
+@use '../styles/variables';
+@use '../styles/mixins';
+
+.label {
+  margin-bottom: map-get(variables.$unit, tad);
+  color: var(--teal);
+  font-weight: bold;
+  display: block;
+}
+
+.description {
+  margin-top: map-get(variables.$unit, tad) * -1;
+  font-size: map-get(variables.$text, smaller);
+  margin-bottom: map-get(variables.$unit, tad);
+}
+
+.error {
+  font-size: map-get(variables.$text, smaller);
+  margin-top: map-get(variables.$unit, tad);
+  color: var(--error);
+  margin-bottom: 0;
+}

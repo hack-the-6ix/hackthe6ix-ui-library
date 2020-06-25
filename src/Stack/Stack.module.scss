@@ -1,0 +1,63 @@
+@use '../styles/variables';
+
+$direction: (row, column);
+$justify: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  even: space-evenly,
+);
+$align: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch,
+);
+
+.container {
+  display: flex;
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  @each $tag, $val in variables.$unit {
+    &--spacing-#{$tag} {
+      margin-bottom: $val * -1;
+    }
+  }
+
+  @each $tag in $direction {
+    &--direction-#{$tag} {
+      flex-direction: $tag;
+    }
+  }
+
+  @each $tag, $val in $justify {
+    &--justify-#{$tag} {
+      justify-content: $val;
+    }
+  }
+
+  @each $tag, $val in $align {
+    &--align-#{$tag} {
+      align-items: $val;
+    }
+  }
+}
+
+.item {
+  @each $tag, $val in variables.$unit {
+    &--#{$tag} {
+      margin-bottom: $val;
+      margin-right: $val;
+    }
+  }
+}
+
+:export {
+  justify: map-keys($justify);
+  align: map-keys($align);
+  direction: $direction;
+}

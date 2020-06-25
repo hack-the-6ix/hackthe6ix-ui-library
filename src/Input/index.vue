@@ -30,31 +30,4 @@ export default {
 };
 </script>
 
-<style lang="scss" module>
-@use '../styles/variables';
-@use '../styles/mixins';
-
-.input {
-  @include mixins.transition(background-color border-color);
-  font-size: map-get(variables.$text, smaller);
-  padding: map-get(variables.$unit, element);
-  border: 2px solid var(--background-active);
-  background-color: var(--background);
-  border-radius: variables.$radius;
-  outline: none;
-
-  &:active:not(:disabled),
-  &:focus {
-    border-color: var(--teal);
-  }
-
-  &:disabled {
-    background-color: var(--background-hover);
-    cursor: not-allowed;
-  }
-
-  &--error {
-    border-color: var(--error);
-  }
-}
-</style>
+<style src="./Input.module.scss" lang="scss" module />

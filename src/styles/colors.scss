@@ -85,9 +85,14 @@ $_: ();
   }
 }
 
+$tags: ();
+@each $tag in map-keys($colors) {
+  $tags: append($tags, unquote($tag), comma);
+}
+
 // Expose variables for usage in code
 :export {
-  tags: map-keys($colors);
+  tags: $tags;
   @each $tag, $val in to-css-var($_) {
     #{$tag}: #{$val};
   }
