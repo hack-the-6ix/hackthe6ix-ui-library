@@ -3,10 +3,6 @@
   "version": "0.0.3",
   "description": "",
   "sideEffects": false,
-  "files": [
-    "static/*",
-    "dist/*"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hack-the-6ix/ui-library.git"
@@ -20,11 +16,10 @@
     "test": "npm run prettier -- --check",
     "lint": "npm run prettier -- --write",
     "start": "start-storybook -p 8001 -s static",
-    "prepublish": "npm run lint && npm run build",
     "prettier": "prettier \"**/*.{js,jsx,vue,json,mdx}\"",
-    "build": "npm run build:clean && npm run build:package",
-    "build:clean": "rm -rf ./dist ./app && mkdir ./dist",
-    "build:package": "cp -a ./src/. ./dist && rm -rf ./dist/**/*.stories.mdx ./dist/index.scss",
+    "publish": "cd dist; npm publish",
+    "build": "rm -rf ./dist ./app && npm run build:dist",
+    "build:dist": "copyfiles package*.json static/**/* src/**/* dist && mv dist/src/* dist && rm -rf dist/src dist/index.scss dist/**/*.stories.mdx",
     "build:storybook": "build-storybook -s static -o app --quiet"
   },
   "keywords": [],
@@ -43,6 +38,7 @@
     "@storybook/vue": "^5.3.19",
     "babel-loader": "^8.1.0",
     "babel-preset-vue": "^2.0.2",
+    "copyfiles": "^2.3.0",
     "css-loader": "^3.6.0",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
@@ -54,7 +50,6 @@
     "style-loader": "^1.2.1",
     "uuid": "^8.2.0",
     "vue": "^2.6.11",
-    "vue-awesome": "^4.0.2",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.11"
   }
