@@ -33,12 +33,8 @@
 </template>
 
 <script>
-import { button_type } from './Button.module.scss';
 import Icon from 'vue-awesome/components/Icon';
-import { tags } from '../styles/colors.scss';
 import 'vue-awesome/icons/circle-notch';
-const variants = button_type.split(', ');
-const colors = tags.split(', ');
 
 export default {
   name: 'Button',
@@ -47,14 +43,11 @@ export default {
   },
   props: {
     variant: {
-      validator: (_) => variants.includes(_),
-      default: variants[0],
+      default: 'solid',
       type: String,
     },
     color: {
-      validator: (_) =>
-        colors.includes(_) && !['background', 'disabled'].includes(_),
-      default: colors[0],
+      default: 'teal',
       type: String,
     },
     disabled: Boolean,

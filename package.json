@@ -17,7 +17,7 @@
     "lint": "npm run prettier -- --write",
     "start": "start-storybook -p 8001 -s static",
     "prettier": "prettier \"**/*.{js,jsx,vue,json,mdx}\"",
-    "publish": "cd dist; npm publish",
+    "pack": "npm run build && cd dist; npm publish",
     "build": "rm -rf ./dist ./app && npm run build:dist",
     "build:dist": "copyfiles package*.json static/**/* src/**/* dist && mv dist/src/* dist && rm -rf dist/src dist/index.scss dist/**/*.stories.mdx",
     "build:storybook": "build-storybook -s static -o app --quiet"

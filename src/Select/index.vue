@@ -77,7 +77,11 @@ export default {
     };
   },
   props: {
-    options: Object | Array,
+    placeholder: String,
+    options: {
+      type: Object | Array,
+      required: true,
+    },
   },
   methods: {
     windowHandler({ target }) {

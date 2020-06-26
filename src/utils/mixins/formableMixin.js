@@ -12,13 +12,18 @@ export default {
     };
   },
   props: {
+    error: String | Boolean,
     autocomplete: String,
-    placeholder: String,
     disabled: Boolean,
+    required: Boolean,
     value: undefined,
     validate: {
       default: () => {},
       type: Function,
+    },
+    name: {
+      type: String,
+      required: true,
     },
   },
   computed: {
@@ -36,11 +41,13 @@ export default {
     formHandler({ target }) {
       const v = target.value;
       if (this.value) {
+        this.validate(v);
         this.$emit('input', v);
       } else if (this.form_data) {
         this.form_updateError(this.name, this.validate(v));
         this.form_updateData(this.name, v);
       } else {
+        this.validate(v);
         this.dataValue = v;
       }
     },

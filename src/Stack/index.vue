@@ -1,33 +1,21 @@
 <script>
-import { units } from '../styles/variables.scss';
-import vars from './Stack.module.scss';
-
-const direction = vars.direction.split(', ');
-const justify = vars.justify.split(', ');
-const align = vars.align.split(', ');
-const spacing = units.split(', ');
-
 export default {
   name: 'Stack',
   props: {
     wrap: Boolean,
     direction: {
-      validator: (_) => direction.includes(_),
-      default: direction[0],
+      default: 'row',
       type: String,
     },
     align: {
-      validator: (_) => align.includes(_),
-      default: align[0],
+      default: 'start',
       type: String,
     },
     justify: {
-      validator: (_) => justify.includes(_),
-      default: justify[0],
+      default: 'start',
       type: String,
     },
     spacing: {
-      validator: (_) => spacing.includes(_),
       default: 'component',
       type: String,
     },
@@ -51,15 +39,17 @@ export default {
           },
         ],
       },
-      this.$slots.default.map((vnode) =>
-        h(
-          'div',
-          {
-            class: [this.$style[`item--${this.spacing}`]],
-          },
-          [vnode],
+      this.$slots.default
+        .filter((vnode) => vnode.tag)
+        .map((vnode) =>
+          h(
+            'div',
+            {
+              class: [this.$style[`item--${this.spacing}`]],
+            },
+            [vnode],
+          ),
         ),
-      ),
     );
   },
 };

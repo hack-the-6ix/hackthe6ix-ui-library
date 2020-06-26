@@ -55,9 +55,3 @@ $align: (
     }
   }
 }
-
-:export {
-  justify: map-keys($justify);
-  align: map-keys($align);
-  direction: $direction;
-}

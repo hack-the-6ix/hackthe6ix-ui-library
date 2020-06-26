@@ -1,6 +1,6 @@
 @use '../styles/variables';
-@use '../styles/mixins';
 @use '../styles/colors';
+@use '../styles/mixins';
 
 @each $tag in colors.$tags {
   .color--#{$tag} {
@@ -9,10 +9,16 @@
 }
 
 .container {
+  align-items: center;
+  display: flex;
+}
+
+.cover {
+  margin-right: map-get(variables.$unit, element);
   position: relative;
 }
 
-.radio {
+.input {
   @include mixins.position(absolute);
   cursor: pointer;
   height: 100%;
@@ -25,58 +31,45 @@
   }
 }
 
-.item {
-  margin: map-get(variables.$unit, tad);
-  align-items: center;
-  display: flex;
-}
-
-.cover {
+.box {
   @include mixins.transition(opacity border-color);
-  margin-right: map-get(variables.$unit, element);
   height: map-get(variables.$unit, component);
   width: map-get(variables.$unit, component);
   border: 2px solid var(--background-active);
+  border-radius: variables.$radius;
   justify-content: center;
-  border-radius: 999px;
-  align-items: stretch;
+  align-items: center;
   display: flex;
 
-  .radio:disabled + & {
+  .input:disabled + & {
     background-color: var(--background-active);
     opacity: 0.4;
   }
 
-  .radio:active + & {
+  .input:active + & {
     border-color: var(--color);
     opacity: 0.4;
   }
 
-  .radio:checked + & {
+  .input:checked + & {
     border-color: var(--color);
   }
 }
 
-.dot {
-  @include mixins.transition(opacity background-color);
-  background-color: var(--background-active);
-  border-radius: 999px;
-  flex-grow: 1;
-  margin: 3px;
+.check {
+  @include mixins.transition(opacity color);
+  color: var(--background-active);
+  width: 60%;
   opacity: 0;
 
-  .radio:hover + .cover > &,
-  .radio:focus + .cover > & {
-    opacity: 0.4;
-  }
-
-  .radio:active + .cover > & {
-    background-color: var(--color);
+  .input:hover + .box > &,
+  .input:focus + .box > & {
     opacity: 1;
   }
 
-  .radio:checked + .cover > & {
-    background-color: var(--color);
+  .input:active + .box > &,
+  .input:checked + .box > & {
+    color: var(--color);
     opacity: 1;
   }
 }
