@@ -3,9 +3,9 @@
     <div :class="$style.container">
       <select
         :class="[
-          $style.field,
+          $style.input,
           $style.select,
-          { [$style[`field--error`]]: error },
+          { [$style[`input--error`]]: error },
         ]"
         :autocomplete="autocomplete"
         :aria-invalid="!!error"
@@ -26,10 +26,10 @@
       </select>
       <div
         :class="[
-          $style.field,
+          $style.input,
           $style.display,
-          { [$style[`field--error`]]: error },
-          { [$style[`field--disabled`]]: disabled },
+          { [$style[`input--error`]]: error },
+          { [$style[`input--disabled`]]: disabled },
         ]"
         @click="show = true && !disabled"
       >
@@ -51,6 +51,13 @@
         :key="value"
       >
         {{ label }}
+        <Icon
+          :class="[
+            $style.check,
+            { [$style[`check--show`]]: value === formValue },
+          ]"
+          name="check"
+        />
       </li>
     </ul>
   </LabelContainer>
@@ -63,6 +70,7 @@ import { speed_normal } from '../styles/variables.scss';
 import LabelContainer from '../LabelContainer';
 import Icon from 'vue-awesome/components/Icon';
 import 'vue-awesome/icons/angle-down';
+import 'vue-awesome/icons/check';
 
 export default {
   name: 'Select',

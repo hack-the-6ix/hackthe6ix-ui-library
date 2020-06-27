@@ -3,8 +3,9 @@
     <div :class="[$style.cover, $style[`color--${color}`]]">
       <input
         :class="$style.input"
-        @input="formHandler"
+        :disabled="disabled"
         :checked="formValue"
+        @input="formHandler"
         :value="value"
         :name="name"
         type="checkbox"

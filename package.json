@@ -27,6 +27,7 @@
     "vue": "*"
   },
   "dependencies": {
+    "string-similarity": "^4.0.1",
     "vue-awesome": "^4.0.2"
   },
   "devDependencies": {
