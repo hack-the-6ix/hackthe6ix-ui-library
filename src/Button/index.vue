@@ -5,7 +5,7 @@
       $style[`button--color-${color}`],
       $style[`button--variant-${variant}`],
     ]"
-    :disabled="disabled"
+    v-on="$listeners"
   >
     <div :class="[$style.content, { [$style[`content--loading`]]: loading }]">
       <Icon
@@ -40,6 +40,9 @@ export default {
   name: 'Button',
   components: {
     Icon,
+  },
+  mounted() {
+    console.log(this);
   },
   props: {
     variant: {

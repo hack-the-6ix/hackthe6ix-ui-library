@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import Button from '../src/Button';
 export default {
   name: 'Loader',
 };
