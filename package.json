@@ -18,8 +18,7 @@
     "start": "start-storybook -p 8001 -s static",
     "prettier": "prettier \"**/*.{js,jsx,vue,json,mdx}\"",
     "pack": "npm run build && cd dist; npm publish",
-    "build": "rm -rf ./dist ./app && npm run build:dist",
-    "build:dist": "copyfiles package*.json static/**/* src/**/* dist && mv dist/src/* dist && rm -rf dist/src dist/index.scss dist/**/*.stories.mdx",
+    "build": "rm -rf ./dist ./app && sh copy.sh",
     "build:storybook": "build-storybook -s static -o app --quiet"
   },
   "keywords": [],
@@ -38,7 +37,6 @@
     "@storybook/vue": "^5.3.19",
     "babel-loader": "^8.1.0",
     "babel-preset-vue": "^2.0.2",
-    "copyfiles": "^2.3.0",
     "css-loader": "^3.6.0",
     "husky": "^4.2.5",
     "prettier": "^2.0.5",
