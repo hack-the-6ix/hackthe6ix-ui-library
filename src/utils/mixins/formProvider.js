@@ -24,13 +24,11 @@ export default (initState = {}) => ({
       this.form_dirty = false;
       this.form_errors = {};
     },
-    onSubmit(action, reset = true) {
-      return async () => {
-        this.form_submitting = true;
-        await action(this.form_data);
-        this.form_submitting = false;
-        if (reset) this.reset();
-      };
+    async onSubmit(action, reset = true) {
+      this.form_submitting = true;
+      await action(this.form_data);
+      this.form_submitting = false;
+      if (reset) this.reset();
     },
     updateData(name, data) {
       Vue.set(this.form_data, name, data);
