@@ -14,7 +14,7 @@ export default {
       return {
         description: this.description,
         required: this.required,
-        error: this.error,
+        error: this.formError,
         label: this.label,
         name: this.name,
       };

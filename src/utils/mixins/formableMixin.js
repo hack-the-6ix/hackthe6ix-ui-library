@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       dataValue: '',
+      dateError: '',
     };
   },
   props: {
@@ -36,6 +37,15 @@ export default {
         return this.dataValue;
       }
     },
+    formError() {
+      if (this.error) {
+        return this.error;
+      } else if (this.form_errors) {
+        return this.form_errors[this.name];
+      } else {
+        return this.dataError;
+      }
+    },
   },
   methods: {
     async formHandler({ target }) {
@@ -47,7 +57,7 @@ export default {
         this.form_updateError(this.name, await this.validate(v));
         this.form_updateData(this.name, v);
       } else {
-        await this.validate(v);
+        this.dataError = await this.validate(v);
         this.dataValue = v;
       }
     },
