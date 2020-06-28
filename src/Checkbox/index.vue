@@ -6,7 +6,7 @@
         :disabled="disabled"
         :checked="formValue"
         @input="formHandler"
-        :value="value"
+        :value="!formValue"
         :name="name"
         type="checkbox"
       />

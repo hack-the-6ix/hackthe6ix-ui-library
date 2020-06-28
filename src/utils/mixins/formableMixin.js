@@ -38,16 +38,16 @@ export default {
     },
   },
   methods: {
-    formHandler({ target }) {
+    async formHandler({ target }) {
       const v = target.value;
       if (this.value) {
-        this.validate(v);
+        await this.validate(v);
         this.$emit('input', v);
       } else if (this.form_data) {
-        this.form_updateError(this.name, this.validate(v));
+        this.form_updateError(this.name, await this.validate(v));
         this.form_updateData(this.name, v);
       } else {
-        this.validate(v);
+        await this.validate(v);
         this.dataValue = v;
       }
     },

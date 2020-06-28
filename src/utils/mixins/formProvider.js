@@ -47,6 +47,7 @@ export default (initState = {}) => ({
       form_submitting: this.form_submitting,
       form_errors: this.form_errors,
       form_data: this.form_data,
+      form_reset: this.reset,
     };
   },
 });
