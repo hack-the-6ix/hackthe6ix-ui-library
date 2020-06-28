@@ -10,6 +10,7 @@
         :autocomplete="autocomplete"
         :aria-invalid="!!error"
         :disabled="disabled"
+        :required="required"
         @input="formHandler"
         :value="formValue"
       >

@@ -9,7 +9,7 @@ export default {
   data() {
     return {
       dataValue: '',
-      dateError: '',
+      dateError: this.required,
     };
   },
   props: {

@@ -15,14 +15,16 @@ export default (initState = {}) => ({
   },
   computed: {
     has_errors() {
-      return !!Object.keys(this.form_errors).length;
+      return !!Object.values(this.form_errors).find((i) => i);
     },
   },
   methods: {
     reset() {
-      this.form_data = { ...initState };
+      Object.keys(this.form_data).forEach((key) => {
+        this.$set(this.form_data, key, initState[key]);
+        this.$set(this.form_errors, key, false);
+      });
       this.form_dirty = false;
-      this.form_errors = {};
     },
     async onSubmit(action, reset = true) {
       this.form_submitting = true;

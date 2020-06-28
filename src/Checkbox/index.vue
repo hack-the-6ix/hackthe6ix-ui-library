@@ -4,6 +4,7 @@
       <input
         :class="$style.input"
         :disabled="disabled"
+        :required="required"
         :checked="formValue"
         @input="formHandler"
         :value="!formValue"
