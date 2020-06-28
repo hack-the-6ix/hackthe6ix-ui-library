@@ -1,11 +1,103 @@
 import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
 import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
 import RadioGroup from '.';
 
 <Meta title='RadioGroup' component={RadioGroup} />
+
+<ToReact vue={Loader} />
 
 <Title />
 
 One low frequency boi
 
 <Props of={RadioGroup} />
+
+## Basic usage
+
+<Preview>
+  <ToReact
+    vue={RadioGroup}
+    options={['Item one', 'Item two', 'Item three']}
+    name='b'
+  />
+</Preview>
+
+## With label props
+
+<Preview>
+  <ToReact
+    vue={RadioGroup}
+    label='This is a label'
+    description='This is a description'
+    required
+    options={['a', 'b', 'c']}
+    name='a'
+  />
+</Preview>
+
+## With colors
+
+<Preview isColumn>
+  <ToReact
+    vue={RadioGroup}
+    color='success'
+    options={['a', 'b', 'c']}
+    name='owo'
+  />
+  <ToReact vue={RadioGroup} color='pink' options={['a', 'b', 'c']} name='uwu' />
+  <ToReact vue={RadioGroup} color='sand' options={['a', 'b', 'c']} name='twt' />
+</Preview>
+
+## With disabled
+
+<Preview>
+  <ToReact
+    vue={RadioGroup}
+    label='This is a label'
+    description='This is a description'
+    disabled
+    options={['a', 'b', 'c']}
+    name='j'
+  />
+</Preview>
+
+## With error
+
+<Preview>
+  <ToReact
+    vue={RadioGroup}
+    label='With boolean error'
+    description='This is a description'
+    error
+    options={['a', 'b', 'c']}
+    name='y'
+  />
+  <ToReact
+    vue={RadioGroup}
+    label='With string error'
+    description='This is a description'
+    error='owo wats this uwu?'
+    options={['a', 'b', 'c']}
+    name='k'
+  />
+</Preview>
+
+## With direction
+
+<Preview isColumn>
+  <ToReact
+    vue={RadioGroup}
+    label='Row direction'
+    direction='row'
+    options={['a', 'b', 'c']}
+    name='c'
+  />
+  <ToReact
+    vue={RadioGroup}
+    label='Column direction'
+    direction='column'
+    options={['a', 'b', 'c']}
+    name='d'
+  />
+</Preview>

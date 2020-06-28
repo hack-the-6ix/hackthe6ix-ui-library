@@ -24,6 +24,7 @@ export default {
     LabelContainer,
   },
   props: {
+    placeholder: String,
     type: String,
   },
   mixins: [LabelContainerMixin, formableMixin],

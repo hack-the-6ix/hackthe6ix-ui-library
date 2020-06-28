@@ -93,7 +93,4 @@ $tags: ();
 // Expose variables for usage in code
 :export {
   tags: $tags;
-  @each $tag, $val in to-css-var($_) {
-    #{$tag}: #{$val};
-  }
 }

@@ -1,0 +1,67 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import ComboBox from '.';
+
+<Meta title='ComboBox' component={ComboBox} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+One owo boi
+
+<Props of={ComboBox} />
+
+## Basic usage
+
+<Preview>
+  <ToReact vue={ComboBox} name='owo' options={['Item 1', 'Item 2', 'Item 3']} />
+</Preview>
+
+## With label props
+
+<Preview>
+  <ToReact
+    vue={ComboBox}
+    name='wtf'
+    label='This is label'
+    description='This is a description'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+    options={['Item 1', 'Item 2', 'Item 3']}
+  />
+</Preview>
+
+## With error
+
+<Preview isColumn>
+  <ToReact
+    vue={ComboBox}
+    name='wtf'
+    label='With boolean error'
+    error
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+    options={['Item 1', 'Item 2', 'Item 3']}
+  />
+  <ToReact
+    vue={ComboBox}
+    name='wtf'
+    label='With string error'
+    error='wtf man >:c'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+    options={['Item 1', 'Item 2', 'Item 3']}
+  />
+</Preview>
+
+## with disabled
+
+<Preview>
+  <ToReact
+    vue={ComboBox}
+    name='wtf'
+    label='Disabled :c'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+    options={['Item 1', 'Item 2', 'Item 3']}
+    disabled
+  />
+</Preview>

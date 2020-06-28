@@ -1,0 +1,87 @@
+@use '../styles/variables';
+@use '../styles/mixins';
+@use '../styles/colors';
+
+@each $tag in colors.$tags {
+  .color--#{$tag} {
+    --color: var(--#{$tag});
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.radio {
+  @include mixins.position(absolute);
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 1;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.item {
+  margin: map-get(variables.$unit, tad);
+  align-items: center;
+  display: flex;
+}
+
+.cover {
+  @include mixins.transition(opacity border-color);
+  margin-right: map-get(variables.$unit, element);
+  height: map-get(variables.$unit, component);
+  width: map-get(variables.$unit, component);
+  border: 2px solid var(--background-active);
+  justify-content: center;
+  border-radius: 999px;
+  align-items: stretch;
+  display: flex;
+
+  .radio:disabled + & {
+    background-color: var(--background-active);
+    opacity: 0.4;
+  }
+
+  .radio:active + & {
+    border-color: var(--color);
+    opacity: 0.4;
+  }
+
+  .radio:checked + & {
+    border-color: var(--color);
+  }
+}
+
+.dot {
+  @include mixins.transition(opacity background-color);
+  background-color: var(--background-active);
+  border-radius: 999px;
+  flex-grow: 1;
+  margin: 3px;
+  opacity: 0;
+
+  .radio:hover + .cover > &,
+  .radio:focus + .cover > & {
+    opacity: 0.4;
+  }
+
+  .radio:active + .cover > & {
+    background-color: var(--color);
+    opacity: 1;
+  }
+
+  .radio:checked + .cover > & {
+    background-color: var(--color);
+    opacity: 1;
+  }
+}
+
+.label {
+  font-size: map-get(variables.$text, smaller);
+  font-weight: bold;
+}

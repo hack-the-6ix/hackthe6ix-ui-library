@@ -1,46 +1,43 @@
 <template>
-  <div :class="$style.checkbox">
-    <div
-      :class="[
-        { 'checkbox__container--checked': value },
-        $style.checkbox__container,
-      ]"
-    >
+  <div :class="$style.container">
+    <div :class="[$style.cover, $style[`color--${color}`]]">
       <input
-        :class="$style.checkbox__form"
-        type="checkbox"
-        v-model="value"
-        tabindex="-1"
+        :class="$style.input"
+        :disabled="disabled"
+        :checked="formValue"
+        @input="formHandler"
+        :value="value"
         :name="name"
+        type="checkbox"
       />
-      <icon
-        :class="[{ 'checkbox__icon--checked': value }, $style.checkbox__icon]"
-        icon="check"
-      />
+      <div :class="$style.box">
+        <Icon name="check" :class="$style.check" />
+      </div>
     </div>
-    <label :class="$style.checkbox__label" :htmlFor="name">{{
-      label + (required ? '*' : '')
-    }}</label>
+    <label :htmlFor="name" :class="$style.label">
+      {{ label + (required ? '*' : '') }}
+    </label>
   </div>
 </template>
 
 <script>
+import formableMixin from '../utils/mixins/formableMixin';
+import Icon from 'vue-awesome/components/Icon';
+import 'vue-awesome/icons/check';
+import Stack from '../Stack';
+
 export default {
   name: 'Checkbox',
-  model: {
-    prop: 'value',
-    event: 'check',
+  components: {
+    Stack,
+    Icon,
   },
+  mixins: [formableMixin],
   props: {
-    value: Boolean,
-    required: Boolean,
-    label: {
+    label: String,
+    color: {
       type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true,
+      default: 'teal',
     },
   },
 };

@@ -1,55 +1,80 @@
-@import '../styles/mixins';
-@import '../styles/variables';
-@import '../styles/colors';
+@use '../styles/variables';
+@use '../styles/colors';
+@use '../styles/mixins';
 
-.checkbox {
-  @include flex;
-  margin-bottom: 16px;
+@each $tag in colors.$tags {
+  .color--#{$tag} {
+    --color: var(--#{$tag});
+  }
+}
+
+.container {
+  align-items: center;
+  display: flex;
+}
+
+.cover {
+  margin-right: map-get(variables.$unit, element);
+  position: relative;
+}
+
+.input {
+  @include mixins.position(absolute);
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 1;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.box {
+  @include mixins.transition(opacity border-color);
+  height: map-get(variables.$unit, component);
+  width: map-get(variables.$unit, component);
+  border: 2px solid var(--background-active);
+  border-radius: variables.$radius;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  .input:disabled + & {
+    background-color: var(--background-active);
+    opacity: 0.4;
+  }
+
+  .input:active + & {
+    border-color: var(--color);
+    opacity: 0.4;
+  }
+
+  .input:checked + & {
+    border-color: var(--color);
+  }
+}
+
+.check {
+  @include mixins.transition(opacity color);
+  color: var(--background-active);
+  width: 60%;
+  opacity: 0;
+
+  .input:hover + .box > &,
+  .input:focus + .box > & {
+    opacity: 1;
+  }
+
+  .input:active + .box > &,
+  .input:checked + .box > & {
+    color: var(--color);
+    opacity: 1;
+  }
+}
+
+.label {
+  font-size: map-get(variables.$text, smaller);
   font-weight: bold;
-
-  &__label {
-    color: $teal;
-    margin-top: 2px;
-    font-size: 0.95rem;
-    font-family: $font;
-  }
-
-  &__container {
-    @include transition(background-color);
-    @include flex(center);
-    margin-right: 10px;
-    position: relative;
-    flex-shrink: 0;
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
-    overflow: hidden;
-    background-color: #eaeaea;
-    font-size: 0.8rem;
-    color: white;
-
-    &--checked {
-      background-color: $teal;
-    }
-  }
-
-  &__icon {
-    @include transition(opacity transform);
-    transform: rotate(45deg);
-    opacity: 0;
-
-    &--checked {
-      transform: rotate(0deg);
-      opacity: 1;
-    }
-  }
-
-  &__form {
-    @include position(absolute);
-    opacity: 0;
-    z-index: 1;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
 }

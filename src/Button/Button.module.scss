@@ -127,7 +127,3 @@ $button_type: (solid, outline, ghost);
     opacity: 0;
   }
 }
-
-:export {
-  button_type: $button_type;
-}
