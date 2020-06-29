@@ -25,7 +25,6 @@ export default {
   props: {
     placeholder: String,
     type: String,
-    min: Number,
   },
   mixins: [LabelContainerMixin, formableMixin],
 };
