@@ -28,6 +28,8 @@ export default {
     return h(
       this.as,
       {
+        ...this.$attrs,
+        ...this.$listeners,
         class: [
           this.$style[`container--direction-${this.direction}`],
           this.$style[`container--justify-${this.justify}`],

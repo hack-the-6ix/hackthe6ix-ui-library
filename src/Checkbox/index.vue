@@ -2,13 +2,11 @@
   <div :class="$style.container">
     <div :class="[$style.cover, $style[`color--${color}`]]">
       <input
+        v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
         :class="$style.input"
-        :disabled="disabled"
-        :required="required"
         :checked="formValue"
         @input="formHandler"
         :value="!formValue"
-        :name="name"
         type="checkbox"
       />
       <div :class="$style.box">

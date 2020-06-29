@@ -28,6 +28,14 @@ export default {
     },
   },
   computed: {
+    formableProps() {
+      return {
+        autocomplete: this.autocomplete,
+        disabled: this.disabled,
+        required: this.required,
+        name: this.name,
+      };
+    },
     formValue() {
       if (this.value) {
         return this.value;

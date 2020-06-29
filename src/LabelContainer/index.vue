@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind="{ ...$listeners, ...$attrs }">
     <label :class="$style.label" :htmlFor="name" v-if="label">
       {{ label + (required ? '*' : '') }}
     </label>

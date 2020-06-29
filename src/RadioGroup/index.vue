@@ -11,12 +11,11 @@
       >
         <div :class="$style.container">
           <input
+            v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
             :checked="formValue && formValue === value"
             :class="$style.radio"
-            :disabled="disabled"
             @input="formHandler"
             :value="value"
-            :name="name"
             type="radio"
           />
           <div :class="$style.cover">

@@ -5,8 +5,7 @@
       $style[`button--color-${color}`],
       $style[`button--variant-${variant}`],
     ]"
-    :disabled="disabled"
-    v-bind="$listeners"
+    v-bind="{ ...$listeners, ...$attrs, ...buttonProps }"
   >
     <div :class="[$style.content, { [$style[`content--loading`]]: loading }]">
       <Icon
@@ -41,6 +40,12 @@ export default {
   name: 'Button',
   components: {
     Icon,
+  },
+  computed: {
+    buttonProps() {
+      const { loading, variant, color, icon, ...props } = this.$props;
+      return props;
+    },
   },
   props: {
     variant: {

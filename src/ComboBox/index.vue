@@ -1,13 +1,10 @@
 <template>
   <LabelContainer :class="$style.container" v-bind="labelContainerProps">
     <input
+      v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
       @focus="show = true && !disabled"
-      :autocomplete="autocomplete"
-      :placeholder="placeholder"
       :aria-invalid="!!error"
       :class="$style.input"
-      :required="required"
-      :disabled="disabled"
       v-model="input"
       ref="input"
     />
