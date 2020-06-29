@@ -4,9 +4,10 @@
       <input
         :class="$style.input"
         :disabled="disabled"
+        :required="required"
         :checked="formValue"
         @input="formHandler"
-        :value="value"
+        :value="!formValue"
         :name="name"
         type="checkbox"
       />

@@ -15,22 +15,22 @@ export default (initState = {}) => ({
   },
   computed: {
     has_errors() {
-      return !!Object.keys(this.form_errors).length;
+      return !!Object.values(this.form_errors).find((i) => i);
     },
   },
   methods: {
     reset() {
-      this.form_data = { ...initState };
+      Object.keys(this.form_data).forEach((key) => {
+        this.$set(this.form_data, key, initState[key]);
+        this.$set(this.form_errors, key, false);
+      });
       this.form_dirty = false;
-      this.form_errors = {};
     },
-    onSubmit(action, reset = true) {
-      return async () => {
-        this.form_submitting = true;
-        await action(this.form_data);
-        this.form_submitting = false;
-        if (reset) this.reset();
-      };
+    async onSubmit(action, reset = true) {
+      this.form_submitting = true;
+      await action(this.form_data);
+      this.form_submitting = false;
+      if (reset) this.reset();
     },
     updateData(name, data) {
       Vue.set(this.form_data, name, data);
@@ -47,6 +47,7 @@ export default (initState = {}) => ({
       form_submitting: this.form_submitting,
       form_errors: this.form_errors,
       form_data: this.form_data,
+      form_reset: this.reset,
     };
   },
 });

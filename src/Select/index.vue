@@ -5,11 +5,12 @@
         :class="[
           $style.input,
           $style.select,
-          { [$style[`input--error`]]: error },
+          { [$style[`input--error`]]: formError },
         ]"
         :autocomplete="autocomplete"
         :aria-invalid="!!error"
         :disabled="disabled"
+        :required="required"
         @input="formHandler"
         :value="formValue"
       >

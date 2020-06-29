@@ -9,6 +9,7 @@ export default {
   data() {
     return {
       dataValue: '',
+      dateError: this.required,
     };
   },
   props: {
@@ -36,18 +37,27 @@ export default {
         return this.dataValue;
       }
     },
+    formError() {
+      if (this.error) {
+        return this.error;
+      } else if (this.form_errors) {
+        return this.form_errors[this.name];
+      } else {
+        return this.dataError;
+      }
+    },
   },
   methods: {
-    formHandler({ target }) {
+    async formHandler({ target }) {
       const v = target.value;
       if (this.value) {
-        this.validate(v);
+        await this.validate(v);
         this.$emit('input', v);
       } else if (this.form_data) {
-        this.form_updateError(this.name, this.validate(v));
+        this.form_updateError(this.name, await this.validate(v));
         this.form_updateData(this.name, v);
       } else {
-        this.validate(v);
+        this.dataError = await this.validate(v);
         this.dataValue = v;
       }
     },

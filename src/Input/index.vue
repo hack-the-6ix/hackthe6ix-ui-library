@@ -1,11 +1,12 @@
 <template>
   <LabelContainer v-bind="labelContainerProps">
     <input
-      :class="[$style.input, { [$style[`input--error`]]: error }]"
+      :class="[$style.input, { [$style[`input--error`]]: formError }]"
       :autocomplete="autocomplete"
       :placeholder="placeholder"
       :aria-invalid="!!error"
       :disabled="disabled"
+      :required="required"
       @input="formHandler"
       :value="formValue"
       :type="type"
