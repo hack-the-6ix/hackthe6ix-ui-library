@@ -3,9 +3,11 @@
     <input
       v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
       :class="[$style.input, { [$style[`input--error`]]: formError }]"
+      :placeholder="placeholder"
       :aria-invalid="!!error"
       @input="formHandler"
       :value="formValue"
+      :type="type"
     />
   </LabelContainer>
 </template>
