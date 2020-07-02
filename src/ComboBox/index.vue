@@ -4,7 +4,9 @@
       v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
       @focus="show = true && !disabled"
       :aria-invalid="!!formError"
+      :placeholder="placeholder"
       :class="$style.input"
+      @keydown="keyBlur"
       v-model="input"
       ref="input"
     />
@@ -66,9 +68,20 @@ export default {
       this.formHandler({ target: { value } });
       this.input = value;
     },
+    blur() {
+      if (this.allowFree && this.input !== this.formValue) {
+        this.formHandler({ target: { value: this.input } });
+      }
+      this.show = false;
+    },
+    keyBlur(e) {
+      if (e.key === 'Tab' || e.key === 'Enter') {
+        this.blur();
+      }
+    },
     windowHandler({ target }) {
       if (target === this.$refs.input) return;
-      this.show = false;
+      this.blur();
     },
   },
   mounted() {
@@ -102,6 +115,7 @@ export default {
   },
   props: {
     placeholder: String,
+    allowFree: Boolean,
     options: Array,
     limit: {
       type: Number,
