@@ -1,0 +1,53 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import Upload from '.';
+
+<Meta title='Upload' component={Upload} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+One loady boi
+
+<Props of={Upload} />
+
+## Basic usage
+
+<Preview>
+  <ToReact name='wtf2' vue={Upload} />
+</Preview>
+
+## With label props
+
+<Preview>
+  <ToReact
+    vue={Upload}
+    name='wtf'
+    label='This is label'
+    description='This is a description'
+    required
+  />
+</Preview>
+
+## With colors
+
+<Preview isColumn>
+  <ToReact vue={Upload} name='wtf3' color='light' />
+  <ToReact vue={Upload} name='wtf4' color='sand' />
+  <ToReact vue={Upload} name='wtf5' color='magenta' />
+</Preview>
+
+## With error
+
+<Preview isColumn>
+  <ToReact vue={Upload} name='wtf7' error />
+  <ToReact vue={Upload} name='wtf8' error='Invalid file' />
+</Preview>
+
+## With disabled
+
+<Preview>
+  <ToReact vue={Upload} name='wtf6' disabled />
+</Preview>

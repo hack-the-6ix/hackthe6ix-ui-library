@@ -1,0 +1,77 @@
+@use '../styles/variables';
+@use '../styles/mixins';
+@use '../styles/colors';
+
+@each $tag in colors.$tags {
+  .#{$tag} {
+    --color: var(--#{$tag});
+    --color-hover: var(--#{$tag}-hover);
+    --highlight: var(--#{$tag}-highlight);
+    --highlight-active: var(--#{$tag}-highlight-active);
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.input {
+  @include mixins.position(absolute);
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.content {
+  @include mixins.transition(background-color border-color);
+  padding: map-get(variables.$unit, component)
+    map-get(variables.$unit, container);
+  border: 2px dashed var(--background-active);
+  border-radius: variables.$radius;
+  align-items: center;
+  font-weight: bold;
+  display: flex;
+
+  .input:hover:not(:disabled) + &,
+  .input:focus:not(:disabled) + & {
+    background-color: var(--highlight);
+    border-color: var(--color);
+  }
+
+  .input:active:not(:disabled) + & {
+    background-color: var(--highlight-active);
+    border-color: var(--color-hover);
+  }
+
+  .input:disabled + & {
+    background-color: var(--background-hover);
+    color: var(--disabled-active);
+  }
+
+  &--error {
+    border-color: var(--error);
+  }
+}
+
+.icon {
+  margin-right: map-get(variables.$unit, component);
+  width: map-get(variables.$text, normal);
+  color: var(--color);
+  flex-shrink: 0;
+  height: auto;
+}
+
+.highlight {
+  color: var(--color);
+}
+
+.label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

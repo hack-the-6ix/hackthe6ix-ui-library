@@ -31,7 +31,7 @@
     "vue-awesome": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
+    "@babel/core": "^7.10.4",
     "@storybook/addon-docs": "^5.3.19",
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-scss": "^1.0.2",
