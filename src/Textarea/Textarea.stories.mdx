@@ -1,0 +1,47 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import Textarea from '.';
+
+<Meta title='Textarea' component={Textarea} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+One wordy boi
+
+<Props of={Textarea} />
+
+## Basic usage
+
+<Preview>
+  <ToReact name='wtf' placeholder='REEEEEEEE' vue={Textarea} />
+</Preview>
+
+## With label props
+
+<Preview>
+  <ToReact
+    vue={Textarea}
+    name='wtf'
+    label='This is label'
+    description='This is a description'
+    placeholder='REEEEEEEE'
+    rows='10'
+    required
+  />
+</Preview>
+
+## With error
+
+<Preview isColumn>
+  <ToReact vue={Textarea} placeholder='REEEEEEEE' name='wtf7' error />
+  <ToReact vue={Textarea} placeholder='REEEEEEEE' name='wtf8' error='>:C' />
+</Preview>
+
+## With disabled
+
+<Preview>
+  <ToReact vue={Textarea} placeholder='REEEEEEEE' name='wtf6' disabled />
+</Preview>

@@ -3,7 +3,7 @@
     <input
       v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
       @focus="show = true && !disabled"
-      :aria-invalid="!!error"
+      :aria-invalid="!!formError"
       :class="$style.input"
       v-model="input"
       ref="input"

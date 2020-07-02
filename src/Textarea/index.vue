@@ -1,13 +1,13 @@
 <template>
   <LabelContainer v-bind="labelContainerProps">
-    <input
+    <textarea
       v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
       :class="[$style.input, { [$style[`input--error`]]: formError }]"
-      :placeholder="placeholder"
       :aria-invalid="!!formError"
+      :placeholder="placeholder"
       @input="formHandler"
       :value="formValue"
-      :type="type"
+      :rows="rows"
     />
   </LabelContainer>
 </template>
@@ -18,16 +18,19 @@ import formableMixin from '../utils/mixins/formableMixin';
 import LabelContainer from '../LabelContainer';
 
 export default {
-  name: 'Input',
+  name: 'Textarea',
   components: {
     LabelContainer,
   },
   props: {
     placeholder: String,
-    type: String,
+    rows: {
+      type: Number,
+      default: 4,
+    },
   },
   mixins: [LabelContainerMixin, formableMixin],
 };
 </script>
 
-<style src="./Input.module.scss" lang="scss" module />
+<style src="./Textarea.module.scss" lang="scss" module />

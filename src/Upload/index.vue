@@ -8,7 +8,7 @@
         :accept="accept"
         type="file"
       />
-      <div :class="[$style.content, error && $style[`content--error`]]">
+      <div :class="[$style.content, formError && $style[`content--error`]]">
         <Icon :class="$style.icon" name="file-upload" />
         <p v-if="fileName" :class="$style.label">{{ fileName }}</p>
         <p v-else>

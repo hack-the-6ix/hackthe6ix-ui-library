@@ -8,7 +8,7 @@
           $style.select,
           { [$style[`input--error`]]: formError },
         ]"
-        :aria-invalid="!!error"
+        :aria-invalid="!!formError"
         @input="formHandler"
         :value="formValue"
       >
@@ -27,7 +27,7 @@
         :class="[
           $style.input,
           $style.display,
-          { [$style[`input--error`]]: error },
+          { [$style[`input--error`]]: formError },
           { [$style[`input--disabled`]]: disabled },
         ]"
         @click="show = true && !disabled"

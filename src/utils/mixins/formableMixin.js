@@ -70,9 +70,4 @@ export default {
       }
     },
   },
-  watch: {
-    error(val) {
-      this.form_updateError(this.name, val);
-    },
-  },
 };
