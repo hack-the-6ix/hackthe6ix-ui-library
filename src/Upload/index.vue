@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     fileName() {
-      return this.formValue?.name;
+      return this.formValue && this.formValue.name;
     },
   },
   components: {
