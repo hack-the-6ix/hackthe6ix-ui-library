@@ -18,6 +18,7 @@
         :icon="{ left: `plus` }"
         @click="add"
         size="small"
+        tabindex="$attrs.tabindex"
         >Add Item</Button
       >
     </div>
@@ -26,12 +27,14 @@
         [...formValue, ...placeholderItems].length && $style[`items--show`]
       "
       spacing="tad"
+      tabindex="$attrs.tabindex"
       wrap
     >
       <button
         v-for="(item, i) in placeholderItems"
         :class="$style.item"
         :data-index="i"
+        tabindex="$attrs.tabindex"
         :key="i"
       >
         <span>{{ item }}</span>
