@@ -1,0 +1,82 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import CustomReact from '../../helpers/CustomReact';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import ListInput from '.';
+
+<Meta title='ListInput' component={ListInput} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+One listy boi
+
+<Props of={ListInput} />
+
+## Basic usage
+
+<Preview>
+  <CustomReact
+    config={{
+      components: { ListInput },
+      template: `<ListInput name='wtf' placeholder='REEEEEEEEE'/>`,
+    }}
+  />
+</Preview>
+
+## With label props
+
+<Preview>
+  <ToReact
+    vue={ListInput}
+    name='wtf'
+    label='This is label'
+    description='This is a description'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+  />
+</Preview>
+
+## With limit
+
+<Preview>
+  <ToReact
+    vue={ListInput}
+    name='wtf4'
+    label='This is label'
+    description='This is a description'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+    limit='4'
+  />
+</Preview>
+
+## With error
+
+<Preview isColumn>
+  <ToReact
+    vue={ListInput}
+    name='wtf'
+    label='With boolean error'
+    error
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+  />
+  <ToReact
+    vue={ListInput}
+    name='wtf'
+    label='With string error'
+    error='wtf man >:c'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+  />
+</Preview>
+
+## with disabled
+
+<Preview>
+  <ToReact
+    vue={ListInput}
+    name='wtf'
+    label='Disabled :c'
+    placeholder='REEEEEEEEEEEEEEEEEEEE'
+    disabled
+  />
+</Preview>

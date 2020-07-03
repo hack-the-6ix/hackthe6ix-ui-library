@@ -2,7 +2,8 @@
   <div :class="$style.container">
     <div :class="[$style.cover, $style[`color--${color}`]]">
       <input
-        v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
+        v-bind="{ ...$attrs, ...formableProps }"
+        v-on="$listeners"
         :class="$style.input"
         :checked="formValue"
         @input="formHandler"

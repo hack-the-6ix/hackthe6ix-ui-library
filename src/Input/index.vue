@@ -1,7 +1,8 @@
 <template>
   <LabelContainer v-bind="labelContainerProps">
     <input
-      v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
+      v-bind="{ ...$attrs, ...formableProps }"
+      v-on="$listeners"
       :class="[$style.input, { [$style[`input--error`]]: formError }]"
       :placeholder="placeholder"
       :aria-invalid="!!formError"

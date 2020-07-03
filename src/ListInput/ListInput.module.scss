@@ -1,0 +1,64 @@
+@use '../Input/Input.module';
+@use '../styles/variables';
+@use '../styles/mixins';
+
+.input {
+  &--container {
+    display: flex;
+    flex-wrap: wrap;
+    &:focus,
+    &:active {
+      border-color: var(--background-active) !important;
+    }
+  }
+
+  &--field {
+    margin-right: map-get(variables.$unit, element);
+    flex-grow: 1;
+    width: 1px;
+  }
+}
+
+.field {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.items {
+  &--show {
+    margin-top: map-get(variables.$unit, tad);
+  }
+}
+
+.item {
+  @include mixins.transition(background-color border-color);
+  padding: map-get(variables.$unit, tad) * 1.2 map-get(variables.$unit, element);
+  border: 2px solid var(--teal-highlight-active);
+  background-color: var(--teal-highlight);
+  border-radius: 999px;
+  align-items: center;
+  color: var(--teal);
+  cursor: pointer;
+  outline: none;
+  display: flex;
+
+  &:hover,
+  &:focus {
+    background-color: var(--teal-highlight-active);
+  }
+
+  &:active {
+    background-color: var(--teal-highlight-active);
+    border-color: var(--teal);
+  }
+}
+
+.label {
+  margin-right: map-get(variables.$unit, tad);
+
+  &_icon {
+    width: map-get(variables.$unit, element);
+    height: auto;
+  }
+}

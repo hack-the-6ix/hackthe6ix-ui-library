@@ -25,6 +25,7 @@ export default {
     },
   },
   render(h) {
+    const slots = this.$slots.default || [];
     return h(
       this.as,
       {
@@ -41,7 +42,7 @@ export default {
           },
         ],
       },
-      this.$slots.default
+      slots
         .filter((vnode) => vnode.tag)
         .map((vnode) =>
           h(

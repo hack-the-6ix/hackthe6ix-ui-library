@@ -1,10 +1,11 @@
 <template>
   <LabelContainer v-bind="labelContainerProps">
     <textarea
-      v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
+      v-bind="{ ...$attrs, ...formableProps }"
       :class="[$style.input, { [$style[`input--error`]]: formError }]"
       :aria-invalid="!!formError"
       :placeholder="placeholder"
+      v-on="$listeners"
       @input="formHandler"
       :value="formValue"
       :rows="rows"

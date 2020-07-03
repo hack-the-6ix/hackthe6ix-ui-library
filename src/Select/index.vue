@@ -2,13 +2,14 @@
   <LabelContainer v-bind="labelContainerProps">
     <div :class="$style.container">
       <select
-        v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
+        v-bind="{ ...$attrs, ...formableProps }"
         :class="[
           $style.input,
           $style.select,
           { [$style[`input--error`]]: formError },
         ]"
         :aria-invalid="!!formError"
+        v-on="$listeners"
         @input="formHandler"
         :value="formValue"
       >

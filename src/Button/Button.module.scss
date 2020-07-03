@@ -2,8 +2,6 @@
 @use '../styles/mixins';
 @use '../styles/colors';
 
-$button_type: (solid, outline, ghost);
-
 .button {
   @include mixins.transition(background-color border-color color);
   font-size: map-get(variables.$text, smaller);
@@ -125,5 +123,13 @@ $button_type: (solid, outline, ghost);
   &--loading {
     transform: translateY(-100%);
     opacity: 0;
+  }
+
+  &--size-normal {
+    padding: map-get(variables.$unit, element) * 1.2;
+  }
+
+  &--size-small {
+    padding: map-get(variables.$unit, element) * 0.9;
   }
 }

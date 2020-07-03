@@ -3,7 +3,11 @@
     :class="$style[`color--${color}`]"
     v-bind="labelContainerProps"
   >
-    <Stack :class="$style.container" :direction="direction">
+    <Stack
+      :class="$style.container"
+      :direction="direction"
+      :spacing="direction === 'row' ? 'component' : 'tad'"
+    >
       <div
         v-for="[value, label] in Object.entries(options)"
         :class="$style.item"
@@ -11,7 +15,8 @@
       >
         <div :class="$style.container">
           <input
-            v-bind="{ ...$listeners, ...$attrs, ...formableProps }"
+            v-bind="{ ...$attrs, ...formableProps }"
+            v-on="$listeners"
             :checked="formValue && formValue === value"
             :class="$style.radio"
             @input="formHandler"

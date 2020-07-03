@@ -5,9 +5,16 @@
       $style[`button--color-${color}`],
       $style[`button--variant-${variant}`],
     ]"
-    v-bind="{ ...$listeners, ...$attrs, ...buttonProps }"
+    v-bind="{ ...$attrs, ...buttonProps }"
+    v-on="$listeners"
   >
-    <div :class="[$style.content, { [$style[`content--loading`]]: loading }]">
+    <div
+      :class="[
+        loading && [$style[`content--loading`]],
+        $style[`content--size-${size}`],
+        $style.content,
+      ]"
+    >
       <Icon
         v-if="icon.left"
         :name="icon.left"
@@ -61,6 +68,10 @@ export default {
     value: String,
     type: String,
     name: String,
+    size: {
+      default: 'normal',
+      type: String,
+    },
     icon: {
       default: () => ({}),
       type: Object,
