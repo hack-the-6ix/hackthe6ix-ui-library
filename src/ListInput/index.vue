@@ -8,8 +8,8 @@
           $style.input,
         ]"
         :placeholder="placeholder"
-        v-bind="formableProps"
         v-model="field"
+        v-bind="{ ...$attrs, ...formableProps }"
       />
       <Button
         :disabled="
