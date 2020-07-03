@@ -8,8 +8,8 @@
           $style.input,
         ]"
         :placeholder="placeholder"
-        v-bind="formableProps"
         v-model="field"
+        v-bind="{ ...$attrs, ...formableProps }"
       />
       <Button
         :disabled="
@@ -22,10 +22,20 @@
       >
     </div>
     <Stack
-      :class="formValue.length && $style[`items--show`]"
+      :class="
+        [...formValue, ...placeholderItems].length && $style[`items--show`]
+      "
       spacing="tad"
       wrap
     >
+      <button
+        v-for="(item, i) in placeholderItems"
+        :class="$style.item"
+        :data-index="i"
+        :key="i"
+      >
+        <span>{{ item }}</span>
+      </button>
       <button
         v-for="(item, i) in formValue"
         :class="$style.item"
@@ -63,6 +73,10 @@ export default {
     limit: {
       type: Number,
       default: Infinity,
+    },
+    placeholderItems: {
+      type: Array,
+      default: [],
     },
   },
   data() {
