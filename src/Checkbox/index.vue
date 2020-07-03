@@ -6,7 +6,7 @@
         v-on="$listeners"
         :class="$style.input"
         :checked="formValue"
-        @input="formHandler"
+        @input="handler"
         :value="!formValue"
         type="checkbox"
       />
@@ -33,11 +33,25 @@ export default {
     Icon,
   },
   mixins: [formableMixin],
+  data() {
+    return {
+      dataValue: false,
+    };
+  },
   props: {
     label: String,
     color: {
       type: String,
       default: 'teal',
+    },
+  },
+  methods: {
+    handler(el) {
+      this.formHandler({
+        target: {
+          value: el.target.value === 'true',
+        },
+      });
     },
   },
 };
