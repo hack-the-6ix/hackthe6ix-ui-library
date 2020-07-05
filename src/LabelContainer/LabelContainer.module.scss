@@ -6,6 +6,10 @@
   color: var(--teal);
   font-weight: bold;
   display: block;
+
+  &__asterisk {
+    color: var(--error);
+  }
 }
 
 .description {
