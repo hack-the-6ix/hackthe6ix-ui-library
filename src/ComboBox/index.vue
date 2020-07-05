@@ -120,7 +120,7 @@ export default {
     options: Array,
     limit: {
       type: Number,
-      default: 5,
+      default: Infinity,
     },
   },
 };
