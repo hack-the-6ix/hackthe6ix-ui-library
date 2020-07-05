@@ -117,6 +117,7 @@
   @include mixins.transition(transform opacity);
   padding: map-get(variables.$unit, element) * 1.2;
   align-items: center;
+  justify-content: center;
   display: flex;
   opacity: 1;
 
