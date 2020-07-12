@@ -1,12 +1,14 @@
 <template>
   <component
-    :is="tag"
     :class="[
       transform && $style[`text--transform-${transform}`],
       color && $style[`text--color-${color}`],
       align && $style[`text--align-${align}`],
       $style[`text--type-${type}`],
     ]"
+    v-on="$listeners"
+    v-bind="$attrs"
+    :is="tag"
   >
     <slot />
   </component>
