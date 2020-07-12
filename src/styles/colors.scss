@@ -12,6 +12,9 @@ $background: #ffffff;
 $disabled: darken($background, 15%);
 $black: #000000;
 $text: #6d6d6d;
+$black: #000000;
+$grey: #717171;
+$white: #ffffff;
 
 $colors: (
   'text': $text,
@@ -28,6 +31,8 @@ $colors: (
   'background': $background,
   'disabled': $disabled,
   'black': $black,
+  'grey': $grey,
+  'white': $white,
 );
 
 @function to-css-var($map, $acc: '-') {
