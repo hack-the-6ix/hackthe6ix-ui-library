@@ -79,7 +79,7 @@ export default {
     },
     placeholderItems: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
   data() {

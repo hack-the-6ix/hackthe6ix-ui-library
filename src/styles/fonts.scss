@@ -1,38 +1,45 @@
 $_: (
-  'Avenir': (
+  'Source Sans Pro': (
     fallback: sans-serif,
     sources: (
       (
         style: normal,
         weight: 400,
         src: (
-          embedded-opentype: 'Avenir-Roman.eot',
-          truetype: 'Avenir-Roman.ttf',
-          woff2: 'Avenir-Roman.woff2',
-          woff: 'Avenir-Roman.woff',
-          svg: 'Avenir-Roman.svg',
+          woff2: 'SourceSansPro-Regular.ttf.woff2',
+          woff: 'SourceSansPro-Regular.otf.woff',
+          opentype: 'SourceSansPro-Regular.otf',
+          truetype: 'SourceSansPro-Regular.ttf',
+        ),
+      ),
+      (
+        style: italic,
+        weight: 400,
+        src: (
+          woff2: 'SourceSansPro-It.ttf.woff2',
+          woff: 'SourceSansPro-It.otf.woff',
+          opentype: 'SourceSansPro-It.otf',
+          truetype: 'SourceSansPro-It.ttf',
         ),
       ),
       (
         style: normal,
-        weight: 600,
+        weight: 700,
         src: (
-          embedded-opentype: 'Avenir-Black.eot',
-          truetype: 'Avenir-Black.ttf',
-          woff2: 'Avenir-Black.woff2',
-          woff: 'Avenir-Black.woff',
-          svg: 'Avenir-Black.svg',
+          woff2: 'SourceSansPro-Bold.ttf.woff2',
+          woff: 'SourceSansPro-Bold.otf.woff',
+          opentype: 'SourceSansPro-Bold.otf',
+          truetype: 'SourceSansPro-Bold.ttf',
         ),
       ),
       (
-        style: normal,
-        weight: 200,
+        style: italic,
+        weight: 700,
         src: (
-          embedded-opentype: 'Avenir-Book.eot',
-          truetype: 'Avenir-Book.ttf',
-          woff2: 'Avenir-Book.woff2',
-          woff: 'Avenir-Book.woff',
-          svg: 'Avenir-Book.svg',
+          woff2: 'SourceSansPro-BoldIt.ttf.woff2',
+          woff: 'SourceSansPro-BoldIt.otf.woff',
+          opentype: 'SourceSansPro-BoldIt.otf',
+          truetype: 'SourceSansPro-BoldIt.ttf',
         ),
       ),
     ),
@@ -42,30 +49,36 @@ $_: (
 @function _load($sources, $path) {
   $res: '';
   @each $type, $url in map-get($sources, src) {
-    $res: #{$res} #{if($res == '', '', ',')} url('#{$path}#{$url}') format('#{$type}');
+    $res: #{$res}#{if($res == '', '', ',')}
+      url('#{$path}#{$url}')
+      format('#{$type}');
   }
   @return $res;
 }
 
-@function font-family($name) {
+@function font-family($name: 'Source Sans Pro') {
   $config: map-get($_, $name);
-  @return "#{$name}", map-get($config, fallback);
+  @return '#{$name}', map-get($config, fallback);
 }
 
-@mixin load ($path: '/') {
+@mixin load($path: '/', $font: 'Source Sans Pro') {
   @each $tag, $config in $_ {
     @each $source in map-get($config, sources) {
       @font-face {
+        font-family: '#{$tag}';
         font-weight: map-get($source, weight);
         font-style: map-get($source, style);
-        src: _load($source, $path);
-        font-family: '#{$tag}';
         font-display: swap;
+        src: _load($source, $path);
       }
     }
   }
 
-  html, button, input, select, textarea {
-    font-family: font-family(Avenir);
+  html,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: font-family($font);
   }
 }

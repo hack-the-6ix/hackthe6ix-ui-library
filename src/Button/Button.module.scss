@@ -126,8 +126,12 @@
     opacity: 0;
   }
 
+  &--size-large {
+    padding: map-get(variables.$unit, element) * 1.3;
+  }
+
   &--size-normal {
-    padding: map-get(variables.$unit, element) * 1.2;
+    padding: map-get(variables.$unit, element) * 1.1;
   }
 
   &--size-small {

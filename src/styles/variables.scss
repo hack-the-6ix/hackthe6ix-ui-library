@@ -1,6 +1,6 @@
 @use './fonts.scss';
 
-$font: fonts.font-family(Avenir);
+$font: fonts.font-family();
 
 $unit: (
   section: 3.6rem,
@@ -18,7 +18,7 @@ $text: (
   small: 0.7rem,
 );
 
-$radius: 0.4rem;
+$radius: 1rem;
 
 $speed: (
   fast: 150ms,
