@@ -1,0 +1,80 @@
+@use '../styles/variables';
+@use '../styles/colors';
+
+$config: (
+  heading1: (
+    tag: 'h1',
+    color: 'teal',
+    size: 'xlarge',
+    weight: 'bold',
+  ),
+  heading2: (
+    tag: 'h2',
+    color: 'teal',
+    size: 'large',
+    weight: 'bold',
+  ),
+  heading3: (
+    tag: 'h3',
+    color: 'text',
+    size: 'larger',
+    weight: 'bold',
+  ),
+  heading4: (
+    tag: 'h4',
+    color: 'text',
+    size: 'normal',
+    weight: 'bold',
+  ),
+  body1: (
+    tag: 'p',
+    color: 'text',
+    size: 'normal',
+    weight: 'normal',
+  ),
+  body2: (
+    tag: 'p',
+    color: 'text',
+    size: 'smaller',
+    weight: 'normal',
+  ),
+  body3: (
+    tag: 'p',
+    color: 'text',
+    size: 'small',
+    weight: 'normal',
+  ),
+);
+
+$transform: (capitalize lowercase uppercase);
+$align: (start end center);
+
+@each $tag, $opts in $config {
+  .text--type-#{$tag} {
+    font-size: #{map-get(variables.$text, map-get($opts, size))};
+    font-weight: #{map-get($opts, weight)};
+    color: var(--#{map-get($opts, color)});
+  }
+
+  :export {
+    #{$tag}: #{map-get($opts, tag)};
+  }
+}
+
+@each $tag in colors.$tags {
+  .text--color-#{$tag} {
+    color: var(--#{$tag});
+  }
+}
+
+@each $tag in $align {
+  .text--align-#{$tag} {
+    text-align: #{$tag};
+  }
+}
+
+@each $tag in $transform {
+  .text--transform-#{$tag} {
+    text-transform: #{$tag};
+  }
+}

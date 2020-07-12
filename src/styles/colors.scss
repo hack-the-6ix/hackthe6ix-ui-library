@@ -10,6 +10,7 @@ $error: #f14646;
 $success: #18b918;
 $background: #ffffff;
 $disabled: darken($background, 15%);
+$black: #000000;
 $text: #6d6d6d;
 
 $colors: (
@@ -26,6 +27,7 @@ $colors: (
   'success': $success,
   'background': $background,
   'disabled': $disabled,
+  'black': $black,
 );
 
 @function to-css-var($map, $acc: '-') {

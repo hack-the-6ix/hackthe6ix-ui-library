@@ -1,0 +1,84 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import vars from '../../helpers/getVariables';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import 'vue-awesome/icons/flag';
+import Text from '.';
+
+<Meta title='Text' component={Text} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+One wordy boi
+
+<Props of={Text} />
+
+## Default
+
+<Preview>
+  <ToReact vue={Text}>Default text</ToReact>
+</Preview>
+
+## with types
+
+<Preview isColumn>
+  <ToReact vue={Text} type='heading1'>
+    Heading1
+  </ToReact>
+  <ToReact vue={Text} type='heading2'>
+    Heading2
+  </ToReact>
+  <ToReact vue={Text} type='heading3'>
+    Heading3
+  </ToReact>
+  <ToReact vue={Text} type='heading4'>
+    Heading4
+  </ToReact>
+  <ToReact vue={Text} type='body1'>
+    Body1
+  </ToReact>
+  <ToReact vue={Text} type='body2'>
+    Body2
+  </ToReact>
+  <ToReact vue={Text} type='body3'>
+    Body3
+  </ToReact>
+</Preview>
+
+## with color
+
+<Preview>
+  <ToReact vue={Text} color='sand'>
+    Sand color
+  </ToReact>
+</Preview>
+
+## with transform
+
+<Preview>
+  <ToReact vue={Text} transform='capitalize'>
+    Capitalize
+  </ToReact>
+  <ToReact vue={Text} transform='uppercase'>
+    Uppercase
+  </ToReact>
+  <ToReact vue={Text} transform='lowercase'>
+    Lowercase
+  </ToReact>
+</Preview>
+
+## with align
+
+<Preview>
+  <ToReact vue={Text} align='start' as='p'>
+    Start
+  </ToReact>
+  <ToReact vue={Text} align='center' as='p'>
+    Center
+  </ToReact>
+  <ToReact vue={Text} align='end' as='p'>
+    End
+  </ToReact>
+</Preview>

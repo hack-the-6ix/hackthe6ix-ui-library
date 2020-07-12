@@ -1,7 +1,20 @@
 @use '../src/styles/colors';
+@use '../src/styles/mixins';
 @use '../src/styles/fonts';
 
 :global {
   @include fonts.load;
   @include colors.load;
+
+  html {
+    font-size: 16px;
+
+    @include mixins.media(tablet) {
+      font-size: 14px;
+    }
+
+    @include mixins.media(phone) {
+      font-size: 12px;
+    }
+  }
 }
