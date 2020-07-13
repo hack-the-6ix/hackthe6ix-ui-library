@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     tag() {
-      return this.$style[this.type] || this.as || 'span';
+      return this.as || this.$style[this.type] || 'span';
     },
   },
 };
