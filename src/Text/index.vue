@@ -5,6 +5,7 @@
       color && $style[`text--color-${color}`],
       align && $style[`text--align-${align}`],
       $style[`text--type-${type}`],
+      $style.text,
     ]"
     v-on="$listeners"
     v-bind="$attrs"

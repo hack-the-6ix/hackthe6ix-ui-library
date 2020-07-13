@@ -42,6 +42,26 @@ $_: (
           truetype: 'SourceSansPro-BoldIt.ttf',
         ),
       ),
+      (
+        style: normal,
+        weight: 900,
+        src: (
+          woff2: 'SourceSansPro-Black.ttf.woff2',
+          woff: 'SourceSansPro-Black.otf.woff',
+          opentype: 'SourceSansPro-Black.otf',
+          truetype: 'SourceSansPro-Black.ttf',
+        ),
+      ),
+      (
+        style: italic,
+        weight: 900,
+        src: (
+          woff2: 'SourceSansPro-BlackIt.ttf.woff2',
+          woff: 'SourceSansPro-BlackIt.otf.woff',
+          opentype: 'SourceSansPro-BlackIt.otf',
+          truetype: 'SourceSansPro-BlackIt.ttf',
+        ),
+      ),
     ),
   ),
 );

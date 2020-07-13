@@ -6,52 +6,72 @@ $config: (
     tag: 'h1',
     color: 'teal',
     size: 'xlarge',
-    weight: 'bold',
+    weight: '900',
+    spacing: '0.1rem',
+    height: '1.1',
   ),
   heading2: (
     tag: 'h2',
     color: 'teal',
     size: 'large',
     weight: 'bold',
+    spacing: '0.05rem',
+    height: '1.1',
   ),
   heading3: (
     tag: 'h3',
     color: 'text',
     size: 'larger',
     weight: 'bold',
+    spacing: '0.05rem',
+    height: '1.1',
   ),
   heading4: (
     tag: 'h4',
     color: 'text',
     size: 'normal',
     weight: 'bold',
+    spacing: '0.05rem',
+    height: '1.1',
   ),
   body1: (
     tag: 'p',
     color: 'text',
     size: 'normal',
     weight: 'normal',
+    spacing: '0.05rem',
+    height: '1.5',
   ),
   body2: (
     tag: 'p',
     color: 'text',
     size: 'smaller',
     weight: 'normal',
+    spacing: '0.05rem',
+    height: '1.5',
   ),
   body3: (
     tag: 'p',
     color: 'text',
     size: 'small',
     weight: 'normal',
+    spacing: '0.05rem',
+    height: '1.5',
   ),
 );
 
 $transform: (capitalize lowercase uppercase);
 $align: (start end center);
 
+.text {
+  margin: 0;
+}
+
 @each $tag, $opts in $config {
   .text--type-#{$tag} {
     font-size: #{map-get(variables.$text, map-get($opts, size))};
+    letter-spacing: #{map-get($opts, spacing)};
+    line-height: #{map-get($opts, height)};
     font-weight: #{map-get($opts, weight)};
     color: var(--#{map-get($opts, color)});
   }
