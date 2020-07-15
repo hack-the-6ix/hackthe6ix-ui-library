@@ -83,6 +83,26 @@
     }
   }
 
+  &--variant-underline {
+    background-color: transparent;
+    border-color: var(--color);
+    border: 0;
+    border-bottom: 2px solid;
+    border-radius: 0;
+    color: var(--color);
+
+    &:not(:disabled) {
+      &:hover,
+      &:focus {
+        background-color: var(--color-highlight);
+      }
+
+      &:active {
+        background-color: var(--color-highlight-active);
+      }
+    }
+  }
+
   &:disabled {
     --color: var(--disabled);
     cursor: not-allowed;
