@@ -7,7 +7,6 @@
         :class="$style.input"
         :checked="formValue"
         @input="handler"
-        :value="!formValue"
         type="checkbox"
       />
       <div :class="$style.box">
@@ -49,7 +48,7 @@ export default {
     handler(el) {
       this.formHandler({
         target: {
-          value: el.target.value === 'true',
+          value: el.target.checked,
         },
       });
     },

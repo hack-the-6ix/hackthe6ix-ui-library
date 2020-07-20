@@ -20,7 +20,6 @@
             :checked="formValue && formValue === value"
             :class="$style.radio"
             @input="formHandler"
-            :value="value"
             type="radio"
           />
           <div :class="$style.cover">
