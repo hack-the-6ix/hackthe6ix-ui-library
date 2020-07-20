@@ -48,7 +48,7 @@ export default {
     handler(el) {
       this.formHandler({
         target: {
-          value: el.target.checked,
+          value: el.target.value === 'true',
         },
       });
     },

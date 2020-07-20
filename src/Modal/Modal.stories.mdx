@@ -1,0 +1,40 @@
+import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import CustomReact from '../../helpers/CustomReact';
+import ToReact from '../../helpers/ToReact';
+import Loader from '../../helpers/Loader';
+import Button from '../Button';
+import Modal from '.';
+
+<Meta title='Modal' component={Modal} />
+
+<ToReact vue={Loader} />
+
+<Title />
+
+One poppy boi
+
+<Props of={Modal} />
+
+## Basic usage
+
+<Preview>
+  <CustomReact
+    config={{
+      components: {
+        Button,
+        Modal,
+      },
+      data() {
+        return {
+          show: false,
+        };
+      },
+      template: `<div>
+        <Button @click='show = true'>Show Modal</Button>
+        <Modal label="Header" v-model='show'>
+          <Button @click='show = false'>Close modal "manually"</Button>
+        </Modal>
+      </div>`,
+    }}
+  />
+</Preview>

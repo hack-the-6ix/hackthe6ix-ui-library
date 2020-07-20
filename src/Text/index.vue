@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Text',
+  name: 'TextComponent',
   props: {
     transform: String,
     color: String,

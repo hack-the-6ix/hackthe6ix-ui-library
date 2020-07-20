@@ -1,0 +1,88 @@
+@use '../styles/variables';
+@use '../styles/mixins';
+
+$_speed: slow;
+
+.container {
+  @include mixins.transition(opacity, $_speed);
+  @include mixins.position(fixed);
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  pointer-events: none;
+  align-items: center;
+  display: flex;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+
+  &--show {
+    pointer-events: all;
+    opacity: 1;
+  }
+}
+
+.modal {
+  @include mixins.transition(transform, $_speed);
+  background-color: var(--background);
+  border-radius: variables.$radius;
+  transform: translateY(-2rem);
+  max-width: 80%;
+  min-width: 50%;
+
+  &--show {
+    transform: translateY(0);
+  }
+
+  @include mixins.media(tablet) {
+    max-width: 100%;
+  }
+}
+
+.button {
+  @include mixins.transition(color background-color);
+  height: map-get(variables.$unit, container) * 1.2;
+  width: map-get(variables.$unit, container) * 1.2;
+  background-color: transparent;
+  border-radius: 999px;
+  margin-left: auto;
+  cursor: pointer;
+  display: flex;
+  outline: none;
+  border: none;
+
+  &:hover,
+  &:focus {
+    background-color: var(--teal-highlight);
+    color: var(--teal);
+  }
+
+  &:active {
+    background-color: var(--teal-highlight-active);
+    color: var(--teal-hover);
+  }
+}
+
+.label {
+  margin-right: map-get(variables.$unit, component);
+}
+
+.icon {
+  margin: auto;
+}
+
+.header {
+  padding: map-get(variables.$unit, container);
+  padding-bottom: map-get(variables.$unit, component);
+  align-items: center;
+  display: flex;
+}
+
+.body {
+  padding: map-get(variables.$unit, container);
+  padding-top: 0;
+}
+
+:export {
+  speed: map-get(variables.$speed, $_speed);
+}
