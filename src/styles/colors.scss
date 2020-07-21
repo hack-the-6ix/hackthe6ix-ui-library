@@ -15,6 +15,7 @@ $text: #6d6d6d;
 $black: #000000;
 $grey: #717171;
 $white: #ffffff;
+$copy: #212121;
 
 $colors: (
   'text': $text,
@@ -33,6 +34,7 @@ $colors: (
   'black': $black,
   'grey': $grey,
   'white': $white,
+  'copy': $copy,
 );
 
 @function to-css-var($map, $acc: '-') {
