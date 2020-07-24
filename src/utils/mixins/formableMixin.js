@@ -58,7 +58,7 @@ export default {
   methods: {
     async formHandler({ target }) {
       const v = target.value;
-      if (this.value) {
+      if (this.value != undefined) {
         await this.validate(v);
         this.$emit('input', v);
       } else if (this.form_data) {

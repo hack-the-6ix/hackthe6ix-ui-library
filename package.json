@@ -29,7 +29,7 @@
   "dependencies": {
     "portal-vue": "^2.1.7",
     "string-similarity": "^4.0.1",
-    "vue-awesome": "^4.0.2"
+    "vue-awesome": "^4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
