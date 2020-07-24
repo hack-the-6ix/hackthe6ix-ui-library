@@ -27,14 +27,18 @@ $_speed: slow;
   background-color: var(--background);
   border-radius: variables.$radius;
   transform: translateY(-2rem);
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 80%;
   max-width: 80%;
-  min-width: 50%;
+  display: flex;
 
   &--show {
     transform: translateY(0);
   }
 
   @include mixins.media(tablet) {
+    max-height: 100%;
     max-width: 100%;
   }
 }
@@ -74,13 +78,18 @@ $_speed: slow;
 .header {
   padding: map-get(variables.$unit, container);
   padding-bottom: map-get(variables.$unit, component);
+  background-color: var(--background);
   align-items: center;
   display: flex;
 }
 
 .body {
-  padding: map-get(variables.$unit, container);
+  @include mixins.scroll;
+  padding: map-get(variables.$unit, container) -
+    map-get(variables.$unit, element);
+  margin: map-get(variables.$unit, element);
   padding-top: 0;
+  margin-top: 0;
 }
 
 :export {
