@@ -4,7 +4,13 @@
       v-if="show || show_"
       :class="[$style.container, show && show_ && $style[`container--show`]]"
     >
-      <div :class="[$style.modal, show && show_ && $style[`modal--show`]]">
+      <div
+        :class="[
+          $style.modal,
+          show && show_ && $style[`modal--show`],
+          className,
+        ]"
+      >
         <div :class="$style.header">
           <TextComponent
             type="heading3"
@@ -49,6 +55,7 @@ export default {
     };
   },
   props: {
+    className: String | Array | Object,
     label: String,
     show: Boolean,
   },
