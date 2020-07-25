@@ -77,4 +77,8 @@
 .label {
   font-size: map-get(variables.$text, smaller);
   font-weight: bold;
+
+  &__asterisk {
+    color: var(--error);
+  }
 }

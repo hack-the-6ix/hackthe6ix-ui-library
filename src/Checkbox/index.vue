@@ -14,7 +14,8 @@
       </div>
     </div>
     <label :htmlFor="name" :class="$style.label">
-      {{ label + (required ? '*' : '') }}
+      {{ label }}
+      <span v-if="required" :class="$style.label__asterisk"> *</span>
     </label>
   </div>
 </template>
