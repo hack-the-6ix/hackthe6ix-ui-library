@@ -1,4 +1,5 @@
 import { Meta, Title, Preview, Props } from '@storybook/addon-docs/blocks';
+import CustomReact from '../../helpers/CustomReact';
 import ToReact from '../../helpers/ToReact';
 import Loader from '../../helpers/Loader';
 import LabelContainer from '.';
@@ -19,6 +20,17 @@ A container used for labelling form components and/or sections with descriptions
   <ToReact vue={LabelContainer} name='twt' label='owo'>
     <input name='twt' placeholder='text' />
   </ToReact>
+</Preview>
+
+## With complex label
+
+<Preview>
+  <CustomReact
+    config={{
+      components: { LabelContainer },
+      template: `<LabelContainer><template v-slot:label>REEEEEEEEEE</template>REEEEE</LabelContainer>`,
+    }}
+  />
 </Preview>
 
 ## With description

@@ -26,8 +26,14 @@
             <div :class="$style.dot" />
           </div>
         </div>
-        <label :htmlFor="name" :class="$style.label">
-          {{ label }}
+        <label
+          :htmlFor="name"
+          :class="$style.label"
+          v-if="label || $slots.label"
+        >
+          <slot name="label" v-if="$slots.label" />
+          <span v-else>{{ label }}</span>
+          <span v-if="required" :class="$style.label__asterisk"> *</span>
         </label>
       </div>
     </Stack>

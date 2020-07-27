@@ -1,7 +1,8 @@
 <template>
   <div v-bind="$attrs" v-on="$listeners">
-    <label :class="$style.label" :htmlFor="name" v-if="label">
-      {{ label }}
+    <label :class="$style.label" :htmlFor="name" v-if="label || $slots.label">
+      <slot name="label" v-if="$slots.label" />
+      <span v-else>{{ label }}</span>
       <span v-if="required" :class="$style.label__asterisk"> *</span>
     </label>
     <p :class="$style.description" v-if="description">{{ description }}</p>
